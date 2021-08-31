@@ -9,9 +9,12 @@ export default function Main (props) {
     <main className='page__wrapper'>
       <div className='header-news-wrapper'>
         <Header
-          isLoggedIn={props.isLoggedIn}
+          isLoggedIn={ props.isLoggedIn }
+          handleLogout={ props.handleLogout }
+          openLogin={ props.openLogin }
         />
         <SearchForm
+          onSubmit={ props.searchSubmit }
         />
         <NewsCardsList
         />

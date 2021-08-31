@@ -7,6 +7,8 @@ export default function Header (props) {
       <h3 className='header__title'>NewsExplorer</h3>
       <Navigation
         isLoggedIn={ props.isLoggedIn }
+        handleLogout={ props.handleLogout }
+        openLogin={ props.openLogin }
       />
     </div>
   )

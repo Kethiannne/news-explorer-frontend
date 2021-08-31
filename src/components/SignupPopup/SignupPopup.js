@@ -46,7 +46,7 @@ export default function SignupPopup (props) {
     <input name="password" value={ password } onChange={ handleChange } type="password" required
       className="form__field" placeholder="Password" minLength={ 8 } maxLength={ 200 } />
 
-    <input name="name" value={ name } onChange={handleChange} type="text" required
+    <input name="name" value={ name } onChange={ handleChange } type="text" required
       className="form__field" placeholder="Name" minLength={ 2 } maxLength={ 40 } />
     </PopupWithForm>
   )

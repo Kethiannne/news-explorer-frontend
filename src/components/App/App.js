@@ -127,11 +127,17 @@ function App(props) {
     }, [jwt])
 
     //Logging a User Out
-    function handleLogout(){
-      setLoggedIn(false);
-      setJwt('');
-      localStorage.removeItem('jwt');
-    }
+      function handleLogout(){
+        setLoggedIn(false);
+        setJwt('');
+        localStorage.removeItem('jwt');
+      }
+
+    // Searching for News
+      function searchSubmit(keyword) {
+        // this will search for news
+      }
+
   // if (!doneChecking) {return <div></div>}
   return (
     <CurrentUserContext.Provider value={ currentUser }>
@@ -142,6 +148,9 @@ function App(props) {
           <Route exact path='/'>
             <Main
               isLoggedIn={ loggedIn }
+              searchSubmit={ searchSubmit }
+              handleLogout={ handleLogout }
+              openLogin={ handleLoginOpen }
             />
           </Route>
 
