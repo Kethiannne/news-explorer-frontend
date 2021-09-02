@@ -1,0 +1,35 @@
+.about {
+  display: flex;
+  flex-direction: row;
+}
+
+.about__image {
+  border-radius: 50%;
+  background-image: url(../../images/kethianne.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 464px;
+  min-height: 464px;
+  margin: 80px 56px 60px 105px;
+}
+
+.about__article {
+  max-width: 600px;
+  margin-top: 130px;
+}
+
+.about__article-title {
+  font-family: roboto-slab;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 46px;
+}
+
+.about__article-para {
+  font-family: roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}

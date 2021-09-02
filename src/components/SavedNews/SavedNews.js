@@ -6,11 +6,11 @@ export default function SavedNews (props) {
 
   return (
     <main>
-    <SavedNewsHeader
-      isLoggedIn={ props.isLoggedIn }
-    />
-    <NewsCardsList
-    />
+      <SavedNewsHeader
+        isLoggedIn={ props.isLoggedIn }
+      />
+      <NewsCardsList
+      />
     </main>
   )
 }

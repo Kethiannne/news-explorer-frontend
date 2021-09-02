@@ -1,0 +1,13 @@
+
+.page {
+  background-color: white;
+
+}
+
+.page__wrapper {
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  background-color: white;
+  overflow: hidden;
+}

@@ -11,15 +11,15 @@ export default function Navigation (props) {
       return (
         <div className='nav'>
 
-        <Link to='/' className=''>
+        <Link to='/' className='nav__link'>
           Home
         </Link>
 
-        <Link to='/saved-news' className=''>
+        <Link to='/saved-news' className='nav__link'>
           Saved articles
         </Link>
 
-        <button type="button" className="searchForm__button"
+        <button type="button" className="nav__button"
           onClick={ props.handleLogout }>{ currentUser.name }{ logout }</button>
 
         </div>
@@ -28,10 +28,10 @@ export default function Navigation (props) {
     return (
       <div className='nav'>
 
-      <Link to='/' className=''>
+      <Link to='/' className='nav__link'>
         Home
       </Link>
-      <button type="button" className="searchForm__button" onClick={ props.openLogin }>Sign in</button>
+      <button type="button" className="nav__button" onClick={ props.openLogin }>Sign in</button>
 
       </div>
     )

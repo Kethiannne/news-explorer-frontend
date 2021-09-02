@@ -14,11 +14,16 @@ export default function SignupToolTip (props) {
         <button className="popup__close-button button-hover" type="button"
           aria-label="Close" onClick={ props.onClose }>
         </button>
-        <h3 className='toolTip__title'>Registration Successfully Completed!</h3>
-        <p className='toolTip__link' onCLick={() => {
-          props.onCLose();
-          props.openLogin();
-        }}>Sign in</p>
+        <div className='form'>
+          <h3 className='form__title'>Registration Successfully Completed!</h3>
+          <p className='form__link_tooltip' onClick={() => {
+            props.onClose();
+            props.openLogin();
+            }
+          }>
+            Sign in
+          </p>
+        </div>
       </div>
     </div>
   )

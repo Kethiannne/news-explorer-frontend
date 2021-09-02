@@ -1,11 +1,9 @@
 import React from 'react';
-import kethianne from '../../images/kethianne.png';
 
 export default function About (props) {
   return (
-    <main>
       <div className='about'>
-        <img src={ kethianne } alt='my handsome mug'></img>
+        <div className='about__image'></div>
         <article className='about__article'>
           <h2 className='about__article-title'>
             About the author
@@ -28,6 +26,5 @@ export default function About (props) {
           </p>
         </article>
       </div>
-    </main>
   )
 }

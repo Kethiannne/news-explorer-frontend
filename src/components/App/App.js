@@ -155,10 +155,18 @@ function App(props) {
           </Route>
 
           {/* User Saved Articles */}
+          {/* protected routing for later
           <ProtectedRoute path='/saved-news'
             component={ SavedNews }
             isLoggedIn={ loggedIn }
           />
+          */}
+
+          <Route path='/saved-news'>
+            <SavedNews
+              isLoggedIn={ loggedIn }
+            />
+          </Route>
 
           {/* Global Redirect */}
           <Route path='/*'>
@@ -167,21 +175,21 @@ function App(props) {
 
         </Switch>
 
-        {/* Components to be Available Regarless of Route */}
+        {/* Components to be Available Regardless of Route */}
         <Footer />
         <SignupPopup
           onClose={ closeAllPopups }
           isOpen={ isSignupOpen }
           registerUser={ registerUser }
+          openLogin={ handleLoginOpen }
         />
         <SignupToolTip
           onClose={ closeAllPopups }
-          isOpen={ isLoginOpen }
-          openLogin={ handleLoginOpen }
+          isOpen={ isToolTipOpen }
         />
         <LoginPopup
           onClose={ closeAllPopups }
-          isOpen={ isToolTipOpen }
+          isOpen={ isLoginOpen }
           setLoggedIn={ setLoggedIn }
           login={ loginAuthorize }
           openSignup={ handleSignupOpen }

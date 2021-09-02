@@ -14,16 +14,10 @@ export default function SavedNewsHeader (props) {
         <p className='savedNewsHeader__about-description'>Saved Articles</p>
 
         <h1 className='savedNewsHeader__about-title'>
-        { currentUser.name }, you have {
-          {/* need to find a way to save a number representing the number of saved articles
-          and get it here */}
-        } saved articles
+        { currentUser.name }, you have SOME saved articles
         </h1>
         <h3 className='savedNewsHeader__about-subtitle'>
-          By keywords: <span className='savedNewsHeader__boldText'>{
-          {/* need to find a way to save the keywords of saved articles
-          and get them here */}
-        }</span>
+          By keywords: <span className='savedNewsHeader__boldText'>SOME KEYWORDS</span>
         </h3>
 
       </div>

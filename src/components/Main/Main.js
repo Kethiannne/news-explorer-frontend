@@ -6,7 +6,7 @@ import About from '../About/About';
 
 export default function Main (props) {
   return (
-    <main className='page__wrapper'>
+    <main className='main__wrapper'>
       <div className='header-news-wrapper'>
         <Header
           isLoggedIn={ props.isLoggedIn }
@@ -16,10 +16,10 @@ export default function Main (props) {
         <SearchForm
           onSubmit={ props.searchSubmit }
         />
-        <NewsCardsList
-        />
-        <About/>
       </div>
+      <NewsCardsList
+      />
+      <About/>
     </main>
   )
 }

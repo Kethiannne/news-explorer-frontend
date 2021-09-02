@@ -4,7 +4,7 @@ export default function PopupWithForm (props) {
     <div className= {`popup popup_${props.name} ${props.isOpen ? `popup_opened` : ``}`}
       onClick={(evt)=>{
         if (evt.target === evt.currentTarget){
-          props.onClose()
+          props.onClose();
         }
       }}
     >
@@ -22,10 +22,13 @@ export default function PopupWithForm (props) {
           <button type="submit" className="form__save-button button-hover">
             {props.saveText}
           </button>
-          <p className='form__link' onCLick={() => {
-            props.onCLose();
-            props.openForm();
-            }}> { props.linkText }
+          <p className='form__text'> or
+            <span className='form__link' onClick={() => {
+              props.onClose();
+              props.openForm();
+            }}>
+              { props.linkText }
+            </span>
           </p>
         </form>
       </div>
