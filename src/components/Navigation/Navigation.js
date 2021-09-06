@@ -1,7 +1,7 @@
 import React from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
-import logout from '../../images/logout.svg';
+import logout from '../../images/logout.png';
 
 export default function Navigation (props) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -11,16 +11,27 @@ export default function Navigation (props) {
       return (
         <div className='nav'>
 
-        <Link to='/' className='nav__link'>
+        <Link to='/' className={`nav__link button-hover ${props.navMod}
+        ${props.page === 'main' ? `nav__link-underline`: ''}`}>
           Home
         </Link>
 
-        <Link to='/saved-news' className='nav__link'>
+        <Link
+          to='/saved-news'
+          className={`nav__link button-hover ${props.navMod}
+          ${props.page === 'savedNews' ? `nav__link-underline_dark`: ''}`}
+        >
           Saved articles
         </Link>
 
-        <button type="button" className="nav__button"
-          onClick={ props.handleLogout }>{ currentUser.name }{ logout }</button>
+        <button
+          type="button"
+          className={`nav__button nav__button_logout button-hover ${props.navMod}`}
+          onClick={ props.handleLogout }
+        >
+          { currentUser.name ? currentUser.name : 'Playing with Dev tools?' }
+          <img src={ logout } className='nav__logout-img' alt='logout'/>
+        </button>
 
         </div>
       )
@@ -28,10 +39,17 @@ export default function Navigation (props) {
     return (
       <div className='nav'>
 
-      <Link to='/' className='nav__link'>
+      <Link to='/' className={`nav__link button-hover ${props.navMod}
+        ${props.page === 'main' ? `nav__link-underline`: ''}`}>
         Home
       </Link>
-      <button type="button" className="nav__button" onClick={ props.openLogin }>Sign in</button>
+      <button
+        type="button"
+        className={`nav__button button-hover  button-hover ${props.navMod}`}
+        onClick={ props.openLogin }
+      >
+          Sign in
+      </button>
 
       </div>
     )

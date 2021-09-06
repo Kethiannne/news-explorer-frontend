@@ -1,5 +1,16 @@
 .newsCardList {
-  height: 50px;
+  min-height: 50px;
   color: black;
-  border: black solid 5px;
+  background-color: rgba(245, 246, 247, 1);
+  padding: 5%;
+}
+
+.newsCardList__title {
+  display: block;
+  font-family: roboto-slab;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 34px;
+  margin: 0;
+  margin-bottom: 32px;
 }

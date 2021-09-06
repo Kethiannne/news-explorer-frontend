@@ -1,6 +1,5 @@
 .form__save-button_disabled {
-  color: rgba(0, 0, 0, .2);
-  background-color: white;
-  border: rgba(0, 0, 0, .2) solid 1px;
-  border-radius: 2px;
+  color: rgba(182, 188, 191, 1);
+  background-color: rgba(230, 232, 235, 1);
 }
+

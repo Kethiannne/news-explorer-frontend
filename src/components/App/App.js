@@ -7,6 +7,7 @@ import api from '../../utils/api';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute';
 import { authorize, checkToken, register } from '../../utils/auth';
+import { defaultCardList } from '../../utils/constants'
 
 // Main Page Imports
 import Main from '../Main/Main';
@@ -35,6 +36,7 @@ function App(props) {
     const [isLoginOpen, setIsLoginOpen] = React.useState(false);
     const [isSignupOpen, setIsSignupOpen] = React.useState(false);
     const [isToolTipOpen, setIsToolTipOpen] = React.useState(false);
+    const [newsCards, setNewsCards] = React.useState(defaultCardList);
 
     const history = props.history;
   //-----------------------------------------------------------------
@@ -131,6 +133,7 @@ function App(props) {
         setLoggedIn(false);
         setJwt('');
         localStorage.removeItem('jwt');
+        console.log('logging out')
       }
 
     // Searching for News
@@ -149,8 +152,9 @@ function App(props) {
             <Main
               isLoggedIn={ loggedIn }
               searchSubmit={ searchSubmit }
-              handleLogout={ handleLogout }
               openLogin={ handleLoginOpen }
+              handleLogout={ handleLogout }
+              newsCards={ newsCards }
             />
           </Route>
 
@@ -159,12 +163,18 @@ function App(props) {
           <ProtectedRoute path='/saved-news'
             component={ SavedNews }
             isLoggedIn={ loggedIn }
+            openLogin={ handleLoginOpen }
+            handleLogout={ handleLogout }
+            newsCards={ newsCards }
           />
           */}
 
           <Route path='/saved-news'>
             <SavedNews
               isLoggedIn={ loggedIn }
+              openLogin={ handleLoginOpen }
+              handleLogout={ handleLogout }
+              newsCards={ newsCards }
             />
           </Route>
 

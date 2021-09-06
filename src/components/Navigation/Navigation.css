@@ -8,6 +8,15 @@
   text-decoration: none;
   color: white;
   margin: auto 50px;
+  line-height: 50px
+}
+
+.nav__link-underline {
+  border-bottom: 3px solid white;
+}
+
+.nav__link-underline_dark {
+  border-bottom: 3px solid black;
 }
 
 .nav__button {
@@ -18,4 +27,19 @@
   height: 50px;
   margin: auto 0;
   color: white;
+}
+
+.nav__logout-img {
+  max-width: 24px;
+  max-height: 24px;
+  margin-left: 20px;
+}
+
+.nav__button_logout {
+  border: black solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 0 10px 0 15px;
 }

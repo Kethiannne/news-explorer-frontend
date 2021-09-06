@@ -1,6 +1,7 @@
 .about {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .about__image {
@@ -8,8 +9,9 @@
   background-image: url(../../images/kethianne.png);
   background-repeat: no-repeat;
   background-size: cover;
-  min-width: 464px;
-  min-height: 464px;
+  background-position: center;
+  width: 464px;
+  height: 464px;
   margin: 80px 56px 60px 105px;
 }
 

@@ -1,0 +1,136 @@
+.newsCard {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 282px;
+  max-width: 400px;
+  position: relative;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.newsCard__image {
+  max-width: 400px;
+  height: 272px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  background-size: cover;
+  background-position: center;
+  margin: 0 0 20px;
+}
+
+.newsCard__util-container {
+  display:flex;
+  flex-direction: row-reverse;
+}
+
+.newsCard__keyword {
+  visibility: hidden;
+}
+
+.newsCard__toolTip {
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  margin: 24px 0 0 24px;
+}
+
+.newsCard__tooltip-text {
+  margin: 0;
+  font-family: roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
+}
+
+.newsCard__popIn {
+  opacity: 0;
+  transition: opacity .5s linear .1s;
+}
+
+.newsCard__util {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  margin: 24px 24px;
+  padding: 0;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.newsCard__save:hover {
+  background-image: url(../../images/bookmark-dark.png);
+}
+
+.newsCard__save:hover+div {
+  opacity: 1;
+}
+
+.newsCard__saved {
+  background-image: url(../../images/bookmark-saved.png);
+}
+
+.newsCard__delete {
+  background-image: url(../../images/trash.png);
+}
+
+.newsCard__save {
+  background-image: url(../../images/bookmark.png);
+}
+
+.newsCard__article {
+  padding-left: 24px;
+}
+
+.newsCard__date {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: rgba(182, 188, 191, 1);
+  margin: 0 0 12px;
+}
+
+.newsCard__title {
+  font-family: roboto-slab;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  margin: 0 0 16px;
+}
+
+.newsCard__text {
+  font-family: roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0 0 18px;
+}
+
+.newsCard__source {
+  font-family: roboto-slab;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  letter-spacing: .4px;
+  color: rgba(182, 188, 191, 1);
+  margin: 0 0 24px;
+}

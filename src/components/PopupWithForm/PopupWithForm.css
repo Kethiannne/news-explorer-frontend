@@ -33,7 +33,6 @@
   background-color: rgba(0,0,0,0);
   background-image: url(../../images/Close-Icon.svg);
   background-position: center;
-  cursor: pointer;
   padding: 0;
   position: relative;
   z-index: 50;

@@ -8,8 +8,14 @@ export default function SavedNews (props) {
     <main>
       <SavedNewsHeader
         isLoggedIn={ props.isLoggedIn }
+        openLogin={ props.openLogin }
+        handleLogout={ props.handleLogout }
+        page={ 'savedNews' }
       />
       <NewsCardsList
+        isLoggedIn={ props.isLoggedIn }
+        newsCards={ props.newsCards }
+        page={ 'savedNews' }
       />
     </main>
   )

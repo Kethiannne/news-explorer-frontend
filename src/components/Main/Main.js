@@ -5,6 +5,7 @@ import NewsCardsList from '../NewsCardsList/NewsCardList'
 import About from '../About/About';
 
 export default function Main (props) {
+
   return (
     <main className='main__wrapper'>
       <div className='header-news-wrapper'>
@@ -12,12 +13,16 @@ export default function Main (props) {
           isLoggedIn={ props.isLoggedIn }
           handleLogout={ props.handleLogout }
           openLogin={ props.openLogin }
+          page={ 'main' }
         />
         <SearchForm
           onSubmit={ props.searchSubmit }
         />
       </div>
       <NewsCardsList
+        isLoggedIn={ props.isLoggedIn }
+        newsCards={ props.newsCards }
+        page={ 'main' }
       />
       <About/>
     </main>
