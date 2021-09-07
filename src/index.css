@@ -15,6 +15,7 @@
 @import url(./components/Preloader/preloader.css);
 @import url(./components/SavedNewsHeader/SavedNewsHeader.css);
 @import url(./components/SearchForm/SearchForm.css);
+@import url(./components/FormError/FormError.css);
 @import url(./components/Header/Header.css);
 
 @import url(./components/PopupWithForm/form.css);

@@ -21,19 +21,19 @@ export default function PopupWithForm (props) {
       }}
     >
       <div className={`popup__wrapper`} >
-        <button className="popup__close-button button-hover" type="button"
-          aria-label="Close" onClick={props.onClose}>
+        <button className='popup__close-button button-hover' type='button'
+          aria-label='Close' onClick={props.onClose}>
         </button>
-        <form className="form" name={props.name} onSubmit={props.onSubmit}>
-          <h2 className="form__title">
+        <form className='form' name={props.name} onSubmit={props.onSubmit}>
+          <h2 className='form__title'>
             {props.title}
           </h2>
 
           {props.children}
 
           {/* form error to be given more purpose with validation */}
-          <p className='form__error_save'>This username is not available</p>
-          <button type="submit" className="form__save-button button-hover">
+          <p className='form__input-title form__error_save'>This username is not available</p>
+          <button type='submit' className={`form__save-button  ${props.formValid === true ? `button-hover` : `form__save-button_disabled`}`} >
             {props.saveText}
           </button>
           <p className='form__text'> or

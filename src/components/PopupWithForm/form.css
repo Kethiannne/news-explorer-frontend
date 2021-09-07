@@ -10,12 +10,6 @@
   color: black;
 }
 
-@media screen and (max-width: 880px) {
-  .form {
-    width: 240px;
-  }
-}
-
 .form__title {
   width: 80%;
   margin: 34px 0 22px;
@@ -25,17 +19,9 @@
   line-height: 28px;
 }
 
-@media screen and (max-width: 880px) {
-  .form__title {
-    margin: 25px auto 22px;
-    text-align: left;
-    font-size: 18px;
-  }
-}
-
 .form__field {
   width: 80%;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   border: none;
   border-bottom: rgba(0,0,0,.2) 1px solid;
   text-overflow: ellipsis;
@@ -48,12 +34,6 @@
   font-family: inter, Arial, Helvetica, sans-serif;
 }
 
-@media screen and (max-width: 880px){
-  .form__field {
-    max-width: 238px;
-  }
-}
-
 .form__save-button {
   width: 360px;
   height: 64px;
@@ -63,7 +43,7 @@
   background-color: rgba(47, 113, 229, 1);
   background-position: center;
   padding: 0;
-  margin: 18px 0;
+  margin: 6px 0;
 
   color: white;
   font-size: 18px;
@@ -71,14 +51,6 @@
   line-height: 1.2;
   text-align: center;
   font-family: roboto, Arial, Helvetica, sans-serif;
-}
-
-@media screen and (max-width: 880px){
-  .form__save-button {
-    width: 200px;
-    height: 46px;
-    font-size: 14px;
-  }
 }
 
 .form__input-title {
@@ -91,9 +63,12 @@
   text-align: left;
 }
 
+
+
 .form__save-button_disabled {
   color: rgba(182, 188, 191, 1);
   background-color: rgba(230, 232, 235, 1);
+  cursor: not-allowed;
 }
 
 .form__link {
@@ -117,7 +92,47 @@
   width: 80%;
   text-align: left;
 }
+
+.form__error {
+  color: red;
+  position: relative;
+  top: -15px;
+  margin: 0 auto;
+  z-index: 3;
+  visibility: visible;
+}
+
+.form__error_save {
+  margin: 0 auto;
+  color: red;
+  text-align: center;
+  position: relative;
+  visibility: visible;
+}
+
 .popup_opened {
   opacity: 1;
   visibility: visible;
+}
+
+@media screen and (max-width: 880px) {
+  .form {
+    width: 240px;
+  }
+
+  .form__title {
+    margin: 25px auto 22px;
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .form__field {
+    max-width: 238px;
+  }
+
+  .form__save-button {
+    width: 200px;
+    height: 46px;
+    font-size: 14px;
+  }
 }

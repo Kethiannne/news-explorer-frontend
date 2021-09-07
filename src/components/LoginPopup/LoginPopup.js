@@ -12,7 +12,7 @@ export default function LoginPopup (props) {
   }, [ props.isOpen ]);
 
   function handleChange(evt){
-    evt.target.name === "email" ? setEmail(evt.target.value) : setPassword(evt.target.value);
+    evt.target.name === 'email' ? setEmail(evt.target.value) : setPassword(evt.target.value);
   }
 
   function handleSubmit(evt){
@@ -33,13 +33,15 @@ export default function LoginPopup (props) {
       linkText=' Sign up'
     >
     {/* Children Elements */}
-    <p className='form__input-title'>Email</p>
-    <input name="email" value={ email } onChange={ handleChange } type="email" required
-      className="form__field" placeholder="Enter Email" minLength={ 2 } maxLength={ 200 } />
+    <label htmlFor='login-email' className='form__input-title'>Email</label>
+    <input name='email' id='login-email' value={ email } onChange={ handleChange } type='email' required
+      className='form__field' placeholder='Enter Email' minLength={ 2 } maxLength={ 200 } />
+    <label className='form__input-title form__error'>Invalid Email</label>
 
-    <p className='form__input-title'>Password</p>
-    <input name="password" value={ password } onChange={ handleChange } type="password" required
-      className="form__field" placeholder="Enter Password" minLength={ 8 } maxLength={ 200 } />
+    <label htmlFor='password' className='form__input-title'>Password</label>
+    <input name='password' id='login-password' value={ password } onChange={ handleChange } type='password' required
+      className='form__field' placeholder='Enter Password' minLength={ 8 } maxLength={ 200 } />
+    <label className='form__input-title form__error'>Invalid Password</label>
     </PopupWithForm>
   )
 }
