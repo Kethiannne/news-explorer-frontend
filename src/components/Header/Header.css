@@ -16,7 +16,7 @@
 }
 
 .header__title{
-  font-family: roboto-slab;
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;

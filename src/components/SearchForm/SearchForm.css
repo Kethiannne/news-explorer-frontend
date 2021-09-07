@@ -8,14 +8,14 @@
 }
 
 .searchForm__title{
-  font-family: roboto-slab;
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 60px;
   line-height: 64px;
 }
 
 .searchForm__caption {
-  font-family: roboto;
+  font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -34,7 +34,7 @@
   border: none;
   padding-left: 25px;
   margin-bottom: 48px;
-  font-family: roboto;
+  font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -50,4 +50,8 @@
   border: none;
   z-index: 2;
   right: 167px;
+  font-family: roboto, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
 }

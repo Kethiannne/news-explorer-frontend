@@ -21,7 +21,7 @@
 }
 
 .about__article-title {
-  font-family: roboto-slab;
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
@@ -29,7 +29,7 @@
 }
 
 .about__article-para {
-  font-family: roboto;
+  font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;

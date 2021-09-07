@@ -45,7 +45,7 @@
 
 .newsCard__tooltip-text {
   margin: 0;
-  font-family: roboto;
+  font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 12px;
@@ -96,7 +96,7 @@
 }
 
 .newsCard__date {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -108,23 +108,31 @@
 }
 
 .newsCard__title {
-  font-family: roboto-slab;
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
   font-size: 26px;
   font-weight: 400;
   line-height: 30px;
   margin: 0 0 16px;
+  height: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .newsCard__text {
-  font-family: roboto;
+  font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
   margin: 0 0 18px;
+  height: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .newsCard__source {
-  font-family: roboto-slab;
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

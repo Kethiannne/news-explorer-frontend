@@ -1,16 +1,17 @@
 import React from 'react';
 import Header from '../Header/Header';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { keywords, savedArticles } from '../../utils/constants'
 
 export default function SavedNewsHeader (props) {
   const currentUser = React.useContext(CurrentUserContext);
   let userKeywords = '';
 
     (function () {
-    if (currentUser.keywords) {
+    if (keywords) {
       return (
-        userKeywords = currentUser.keywords.length > 2 ? (`${currentUser.keywords.slice(0, 2).toString()} and ${currentUser.keywords.length - 2} other`) :
-        currentUser.keywords.toString
+        userKeywords = keywords.length > 2 ? (`${keywords.slice(0, 2).toString()} and ${keywords.length - 2} other`) :
+        keywords.toString
       )}
     return userKeywords ='None'
     })()
@@ -31,8 +32,7 @@ export default function SavedNewsHeader (props) {
 
         <h1 className='savedNewsHeader__title'>
       { currentUser.name ? currentUser.name : 'How did you get here? ' }, you have {
-      // for now there is no current user keywords currentUser.keywords.length
-       0} saved articles
+      keywords.length} saved articles
         </h1>
         <h3 className='savedNewsHeader__keywords'>
           By keywords: <span className='savedNewsHeader__boldText'>{ userKeywords }</span>

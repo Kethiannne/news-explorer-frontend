@@ -1,4 +1,16 @@
+import React from 'react';
+
 export default function PopupWithForm (props) {
+
+  React.useEffect(() => {
+    const close = (evt) => {
+      if(evt.keyCode === 27){
+        props.onClose()
+      }
+    }
+    window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  },[])
 
   return (
     <div className= {`popup popup_${props.name} ${props.isOpen ? `popup_opened` : ``}`}
@@ -19,6 +31,8 @@ export default function PopupWithForm (props) {
 
           {props.children}
 
+          {/* form error to be given more purpose with validation */}
+          <p className='form__error_save'>This username is not available</p>
           <button type="submit" className="form__save-button button-hover">
             {props.saveText}
           </button>

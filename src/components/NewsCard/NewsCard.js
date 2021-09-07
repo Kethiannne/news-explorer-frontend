@@ -42,7 +42,7 @@ export default function NewsCard(props) {
 
   function handleSave() {
     props.newsCardSave(props);
-    console.log('save click')
+    console.log('save click', props)
   }
   function handleDelete() {
     props.newsCardDelete(props._id)

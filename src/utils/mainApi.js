@@ -1,6 +1,6 @@
 
 
-class Api {
+class MainApi {
   constructor({baseURL, headers}) {
     this._baseURL = baseURL;
     this._headers = headers;
@@ -75,6 +75,6 @@ class Api {
 
 }
 
-export default new Api({
+export default new MainApi({
   baseURL: process.env.NODE_ENV === "production" ? 'https://api.kethnews.students.nomoreparties.site' : 'http://localhost:3000',
 });

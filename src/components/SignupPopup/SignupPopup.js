@@ -44,14 +44,17 @@ export default function SignupPopup (props) {
     <p className='form__input-title'>Email</p>
     <input name="email" value={ email || '' } onChange={ handleChange } type="email" required
       className="form__field" placeholder="Enter Email" minLength={ 2 } maxLength={ 200 } />
+    <p className='form__error'>Invalid Email Address</p>
 
     <p className='form__input-title'>Password</p>
     <input name="password" value={ password || '' } onChange={ handleChange } type="password" required
       className="form__field" placeholder="Enter Password" minLength={ 8 } maxLength={ 200 } />
+    <p className='form__error'>Invalid Password</p>
 
     <p className='form__input-title'>Username</p>
     <input name="name" value={ name || '' } onChange={ handleChange } type="text" required
       className="form__field" placeholder="Enter Username" minLength={ 2 } maxLength={ 40 } />
+    <p className='form__error'>Invalid Password</p>
     </PopupWithForm>
   )
 }

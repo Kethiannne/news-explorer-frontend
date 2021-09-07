@@ -16,6 +16,7 @@ export default function SavedNews (props) {
         isLoggedIn={ props.isLoggedIn }
         newsCards={ props.newsCards }
         page={ 'savedNews' }
+        newsCardDelete={props.newsCardDelete}
       />
     </main>
   )

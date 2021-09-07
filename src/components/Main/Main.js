@@ -23,6 +23,7 @@ export default function Main (props) {
         isLoggedIn={ props.isLoggedIn }
         newsCards={ props.newsCards }
         page={ 'main' }
+        newsCardSave={props.newsCardSave}
       />
       <About/>
     </main>

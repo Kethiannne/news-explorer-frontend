@@ -21,6 +21,8 @@ export default function NewsCardList(props) {
                       />)
             })
         }
+
+      <button className='newsCardList__loadButton button-hover'>Show More</button>
     </div>
   )
 }

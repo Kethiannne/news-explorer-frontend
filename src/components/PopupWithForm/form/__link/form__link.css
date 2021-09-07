@@ -1,9 +1,0 @@
-.form__link {
-  color: rgba(47, 113, 229, 1);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.form__link:hover {
-  cursor: pointer;
-}

@@ -3,9 +3,9 @@ import React from 'react'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 // Utility Imports
-import api from '../../utils/api';
+import api from '../../utils/mainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import ProtectedRoute from '../ProtectedRoute';
+// import ProtectedRoute from '../ProtectedRoute';
 import { authorize, checkToken, register } from '../../utils/auth';
 import { defaultCardList } from '../../utils/constants'
 
@@ -22,7 +22,10 @@ import SignupToolTip from '../SignupToolTip/SIgnupToolTip'
 import Footer from '../Footer/Footer';
 
 // Preloader
-// impolement preloader import here
+// implement preloader import here
+
+// Apis
+import MainApi from '../../utils/mainApi'
 
 
 function App(props) {
@@ -137,9 +140,20 @@ function App(props) {
       }
 
     // Searching for News
+    // api calls not fully implemented yet
       function searchSubmit(keyword) {
         // this will search for news
       }
+
+    // Saving and Deleting News Cards
+    // api calls not fully implemented yet
+    function newsCardDelete(id) {
+      MainApi.deleteArticle(jwt, id);
+    }
+
+    function newsCardSave(obj) {
+      MainApi.createArticle(obj);
+    }
 
   // if (!doneChecking) {return <div></div>}
   return (
@@ -155,6 +169,7 @@ function App(props) {
               openLogin={ handleLoginOpen }
               handleLogout={ handleLogout }
               newsCards={ newsCards }
+              newsCardSave={ newsCardSave }
             />
           </Route>
 
@@ -166,6 +181,7 @@ function App(props) {
             openLogin={ handleLoginOpen }
             handleLogout={ handleLogout }
             newsCards={ newsCards }
+            newsCardDelete={ newsCardDelete }
           />
           */}
 
@@ -175,6 +191,7 @@ function App(props) {
               openLogin={ handleLoginOpen }
               handleLogout={ handleLogout }
               newsCards={ newsCards }
+              newsCardDelete={ newsCardDelete }
             />
           </Route>
 

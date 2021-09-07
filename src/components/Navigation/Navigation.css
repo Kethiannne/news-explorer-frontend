@@ -1,7 +1,7 @@
 .nav {
   display: flex;
   flex-direction: row;
-  font-family: roboto;
+  font-family: roboto, Arial, Helvetica, sans-serif;
 }
 
 .nav__link {
@@ -17,6 +17,10 @@
 
 .nav__link-underline_dark {
   border-bottom: 3px solid black;
+}
+
+.nav__link_inactive {
+  color: rgba(182, 188, 191, 1);
 }
 
 .nav__button {
@@ -36,10 +40,16 @@
 }
 
 .nav__button_logout {
-  border: black solid 1px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
   padding: 0 10px 0 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav__button_logout_black {
+  border: black solid 1px;
 }

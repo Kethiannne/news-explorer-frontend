@@ -8,24 +8,16 @@
 @import url(./components/App/App.css);
 @import url(./components/About/About.css);
 @import url(./components/Footer/Footer.css);
-@import url(./components/LoginPopup/LoginPopup.css);
-@import url(./components/Main/Main.css);
 @import url(./components/Navigation/Navigation.css);
 @import url(./components/NewsCard/NewsCard.css);
 @import url(./components/NewsCardsList/NewsCardList.css);
 @import url(./components/PopupWithForm/PopupWithForm.css);
 @import url(./components/Preloader/preloader.css);
-@import url(./components/SavedNews/SavedNews.css);
 @import url(./components/SavedNewsHeader/SavedNewsHeader.css);
 @import url(./components/SearchForm/SearchForm.css);
-@import url(./components/SignupPopup/SignupPopup.css);
-@import url(./components/SignupToolTip/SignupToolTip.css);
 @import url(./components/Header/Header.css);
 
-/* Component CSS Mods */
-@import url(./components/PopupWithForm/_opened/PopupWIthForm_opened.css);
-
-
+@import url(./components/PopupWithForm/form.css);
 
 /* General CSS Rules */
 .button-hover {

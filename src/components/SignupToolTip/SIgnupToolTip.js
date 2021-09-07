@@ -2,6 +2,16 @@ import React from 'react';
 
 export default function SignupToolTip (props) {
 
+  React.useEffect(() => {
+    const close = (evt) => {
+      if(evt.keyCode === 27){
+        props.onClose()
+      }
+    }
+    window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  },[])
+
   return (
     <div className= { `popup popup_InfoToolTip ${ props.isOpen ? `popup_opened` : `` }` }
       onClick={(evt)=>{
