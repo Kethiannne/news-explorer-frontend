@@ -3,9 +3,10 @@ import Navigation from '../Navigation/Navigation'
 
 export default function Header (props) {
   const page= props.page;
+
   const headerMod = function (page) {
     if (page === 'main') {
-      return 'main__header'
+      return 'header__main'
     }
     else if (page === 'savedNews') {
       return 'header__black-text'

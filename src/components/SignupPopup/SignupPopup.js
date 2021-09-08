@@ -2,93 +2,100 @@ import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 export default function SignupPopup (props) {
 
-  const [state, setState] =React.useState({
-    email: '',
-    password: '',
-    userName: '',
-    emailError: '',
-    passwordError: '',
-    userNameError: '',
-    emailValid: false,
-    passwordValid: false,
-    userNameValid: false,
-    formValid: false
-  })
+  const [email, setEmail] =React.useState('');
+  const [password, setPassword] =React.useState('');
+  const [userName, setUsername] =React.useState('');
+  const [emailError, setEmailError] =React.useState('');
+  const [passwordError, setPasswordError] =React.useState('');
+  const [userNameError, setUsernameError] =React.useState('');
+  const [emailValid, setEmailValid] =React.useState(false);
+  const [passwordValid, setPasswordValid] =React.useState(false);
+  const [userNameValid, setUsernameValid] =React.useState('');
+  const [formValid, setFormValid] =React.useState(false);
 
+  // Resets to standard values on close
   React.useEffect(() => {
-    setState({
-      email: '',
-      password: '',
-      userName: '',
-      emailError: '',
-      passwordError: '',
-      userNameError: '',
-      emailValid: false,
-      passwordValid: false,
-      userNameValid: false,
-      formValid: false
-    })
+    setEmail('');
+    setPassword('');
+    setUsername('');
+    setEmailError('');
+    setPasswordError('');
+    setUsernameError('');
+    setEmailValid(false);
+    setPasswordValid(false);
+    setUsernameValid(false);
+    setFormValid(false);
   }, [ props.isOpen ]);
 
   // Effect that updates formValid whenever the other validity state keys change
   React.useEffect(()=>{
 
-    setState({formValid: state.emailValid && state.passwordValid && state.userNameValid, ...state});
+    setFormValid(emailValid && passwordValid && userNameValid);
 
-  }, [state.emailValid, state.passwordValid, state.userNameValid])
+  }, [emailValid, passwordValid, userNameValid])
 
 
 
   function validateField(input, value) {
-    let emailError = state.emailError;
-    let passwordError = state.passwordError;
-    let userNameError = state.userNameError;
-    let emailValid = state.emailValid;
-    let passwordValid = state.passwordValid;
-    let userNameValid = state.userNameValid;
+    let eError = emailError;
+    let pError = passwordError;
+    let uError = userNameError;
+    let eValid = emailValid;
+    let pValid = passwordValid;
+    let uValid = userNameValid;
     switch(input) {
       case 'email':
-        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && value.length >= 2 && value.length <= 200;
-        emailError = emailValid ? '' : ' is invalid';
+        eValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && value.length >= 2;
+        eError = emailValid ? '' : ' is invalid';
         break;
       case 'password':
-        passwordValid = value.length >= 6 && value.length <= 200;
-        passwordError = passwordValid ? '': ' is too short';
+        pValid = value.length >= 6;
+        pError = passwordValid ? '': ' is too short';
         break;
       case 'userName':
-        userNameValid = value.length >= 2 && value.length <= 40;
-        userNameError = userNameValid ? '': ' is too short';
+        uValid = value.length >= 2;
+        uError = userNameValid ? '': ' is too short';
       break;
       default:
         break;
     }
-    setState({
-      emailError: emailError,
-      passwordError: passwordError,
-      userNameError: userNameError,
-      emailValid: emailValid,
-      passwordValid: passwordValid,
-      userNameValid: userNameValid,
-    });
+
+    setEmailError(eError);
+    setPasswordError(pError);
+    setUsernameError(uError);
+    setEmailValid(eValid);
+    setPasswordValid(pValid);
+    setUsernameValid(uValid);
   }
 
 
   function handleUserInput (evt) {
     const name = evt.target.name;
     const value = evt.target.value;
-    setState({[name]: value});
+
+    switch(name) {
+      case 'email':
+        setEmail(value)
+        break;
+      case 'password':
+        setPassword(value)
+        break;
+      case 'userName':
+        setUsername(value)
+      break;
+      default:
+        break;
+    }
+
     validateField(name, value);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    props.registerUser(state.email, state.password, state.userName);
+    props.registerUser(email, password, userName);
   }
 
   function formError(input, error) {
-    console.log(input, error ?
-      input + ' ' + error :
-      '')
     return (
         error ?
         input + ' ' + error :
@@ -107,29 +114,21 @@ export default function SignupPopup (props) {
       onSubmit={ handleSubmit }
       openForm={ props.openLogin }
       linkText=' Sign in'
-      formValid={ state.formValid }
+      formValid={ formValid }
     >
     {/* Children Elements */}
     <p className='form__input-title'>Email</p>
-    <input name='email' value={ state.email } onChange={ handleUserInput } type='email' required
+    <input name='email' value={ email } onChange={ handleUserInput } type='email' required
       className='form__field' placeholder='Enter Email' minLength={ 2 } maxLength={ 200 } />
-
-    <p className='form__input-title form__error'> {formError('Email', state.emailError)} </p>
-
+    <p className='form__input-title form__error'> {formError('Email', emailError)} </p>
     <p className='form__input-title'>Password</p>
-    <input name='password' value={ state.password } onChange={ handleUserInput } type='password' required
+    <input name='password' value={ password } onChange={ handleUserInput } type='password' required
       className='form__field' placeholder='Enter Password' minLength={ 8 } maxLength={ 200 } />
-
-    <p className='form__input-title form__error'> {formError('Password', state.passwordError)} </p>
-
-
+    <p className='form__input-title form__error'> {formError('Password', passwordError)} </p>
     <p className='form__input-title'>Username</p>
-    <input name='userName' value={ state.userName } onChange={ handleUserInput } type='text' required
+    <input name='userName' value={ userName } onChange={ handleUserInput } type='text' required
       className='form__field' placeholder='Enter Username' minLength={ 2 } maxLength={ 40 } />
-
-    <p className='form__input-title form__error'> {formError('Username', state.userNameError)} </p>
-
-
+    <p className='form__input-title form__error'> {formError('Username', userNameError)} </p>
     </PopupWithForm>
   )
 }

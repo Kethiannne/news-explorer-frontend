@@ -38,6 +38,9 @@ export default function Navigation (props) {
       )
     }
     return (
+
+      // As a note, the text becomes black when the user is logged in
+
       <div className='nav'>
 
       <Link to='/' className={`nav__link button-hover
