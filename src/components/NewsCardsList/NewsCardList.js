@@ -7,7 +7,7 @@ export default function NewsCardList(props) {
   const newsCardListMod = props.listMod;
 
   function addThree() {
-    setHowMany(howMany+3);
+    setHowMany(howMany + 3);
   }
 
   const searchResults = (
@@ -31,12 +31,6 @@ export default function NewsCardList(props) {
             />)
         })
       }
-    </div>
-  );
-
-  const nothingFound = (
-    <div>
-
     </div>
   );
 
