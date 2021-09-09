@@ -9,7 +9,7 @@ export default function NewsCard(props) {
 
   // returns false if there is no current user or if the card owner doesnt match the card id
   const isSaved = function (){
-    if (currentUser.id) {
+    if (currentUser._id) {
       return props.owner._id === currentUser._id
     }
     return false
@@ -19,7 +19,10 @@ export default function NewsCard(props) {
   function newsCardUtilButton() {
     if (isSaved() === true) {
       // if saved
-      return props.page === 'main'? 'newsCard__util newsCard__saved': `newsCard__util newsCard__delete button-hover`;
+      return (props.page === 'main'?
+        'newsCard__util newsCard__saved':
+        `newsCard__util newsCard__delete button-hover`
+      )
     }
     // if not saved
     return `newsCard__util newsCard__save`
@@ -42,12 +45,10 @@ export default function NewsCard(props) {
 
   function handleSave() {
     props.newsCardSave(props);
-    console.log('save click', props)
   }
+
   function handleDelete() {
     props.newsCardDelete(props._id)
-    console.log('delete click')
-
   }
 
   return (
@@ -96,7 +97,7 @@ export default function NewsCard(props) {
           { props.title }
         </h2>
 
-        <p className='newsCard__text'>
+        <p className=' line-clamp newsCard__text'>
           { props.text }
         </p>
 

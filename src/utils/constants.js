@@ -9,7 +9,7 @@ export const settings = {
 export const defaultCardList = [
   {
     "_id": {
-        "$oid": "1"
+        "_id": "1"
     },
     "keyword": "forest",
     "title": "Big Trees",
@@ -19,12 +19,12 @@ export const defaultCardList = [
     "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
     "owner": {
-        "$oid": "aaa"
+        "_id": "aaa"
     }
   },
   {
     "_id": {
-        "$oid": "2"
+        "_id": "2"
     },
     "keyword": "forest",
     "title": "Big Trees lotta trees in there, its a forest An alternative to useState. Accepts a reducer of type",
@@ -34,12 +34,12 @@ export const defaultCardList = [
     "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
     "owner": {
-        "$oid": "aaa"
+        "_id": "12345"
     }
   },
   {
     "_id": {
-        "$oid": "3"
+        "_id": "3"
     },
     "keyword": "forest",
     "title": "Big Trees",
@@ -49,12 +49,12 @@ export const defaultCardList = [
     "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
     "owner": {
-        "$oid": "aaa"
+        "_id": "12345"
     }
   },
   {
     "_id": {
-        "$oid": "4"
+        "_id": "4"
     },
     "keyword": "forest",
     "title": "Big Trees",
@@ -64,12 +64,12 @@ export const defaultCardList = [
     "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
     "owner": {
-        "$oid": "aaa"
+        "_id": "12345"
     }
   },
   {
     "_id": {
-        "$oid": "5"
+        "_id": "5"
     },
     "keyword": "forest",
     "title": "Big Trees",
@@ -79,7 +79,7 @@ export const defaultCardList = [
     "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
     "owner": {
-        "$oid": "aaa"
+        "_id": "12345"
     }
   },
 ]

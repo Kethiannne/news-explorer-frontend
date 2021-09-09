@@ -43,12 +43,15 @@ function App(props) {
     const [isToolTipOpen, setIsToolTipOpen] = React.useState(false);
     const [isNavMenuOpen, setIsNavMenuOpen] = React.useState(false);
 
+    // these will have more use when the apis are connected
     const [loading, setLoading] = React.useState(false);
     const [results, setResults] = React.useState(true);
     const [newsCards, setNewsCards] = React.useState(defaultCardList);
 
     const history = props.history;
   //-----------------------------------------------------------------
+
+
 
   // A Section for Opening and Closing Popups
   //-----------------------------------------------------------------

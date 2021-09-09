@@ -34,7 +34,7 @@ export default function SavedNewsHeader (props) {
 
         <h1 className='savedNewsHeader__title'>
       { currentUser.name ? currentUser.name : 'How did you get here? ' }, you have {
-      keywords.length} saved articles
+      savedArticles.length} saved articles
         </h1>
         <h3 className='savedNewsHeader__keywords'>
           By keywords: <span className='savedNewsHeader__boldText'>{ userKeywords }</span>
