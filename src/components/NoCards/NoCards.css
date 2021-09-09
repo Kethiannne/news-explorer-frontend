@@ -1,4 +1,4 @@
-.preloader__wrapper {
+.noCards__wrapper {
 	margin: 0;
 	min-height: 282px;
 	background-color: transparent;
@@ -20,7 +20,15 @@
 	animation: spin .75s infinite linear;
 }
 
-.preloader__text {
+.noCards__title {
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: center;
+}
+
+.noCards__text {
   font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
