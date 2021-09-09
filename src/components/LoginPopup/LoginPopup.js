@@ -31,33 +31,35 @@ export default function LoginPopup (props) {
 
 
   function validateField(input, value) {
-    let eError = emailError;
-    let pError = passwordError;
-    let eValid = emailValid;
-    let pValid = passwordValid;
-
+    let emailErrorText = emailError;
+    let passwordErrorText = passwordError;
+    let isEmailValid = emailValid;
+    let isPasswordValid = passwordValid;
+    console.log('poke');
     switch(input) {
       case 'email':
-        eValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && value.length >= 2;
-        eError = emailValid ? '' : ' is invalid';
+        isEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        emailErrorText = isEmailValid ? '' : ' is invalid';
         break;
       case 'password':
-        pValid = value.length > 7;
-        pError = passwordValid ? '': ' is too short';
+        isPasswordValid = value.length > 7;
+        passwordErrorText = isPasswordValid ? '': ' is too short';
       break;
       default:
         break;
     }
-    setEmailError(eError);
-    setPasswordError(pError);
-    setEmailValid(eValid);
-    setPasswordValid(pValid);
+    setEmailError(emailErrorText);
+    setPasswordError(passwordErrorText);
+    setEmailValid(isEmailValid);
+    setPasswordValid(isPasswordValid);
   }
 
 
   function handleUserInput (evt) {
     const name = evt.target.name;
     const value = evt.target.value;
+
+    validateField(name, value);
 
     switch(name) {
       case 'email':
@@ -70,7 +72,6 @@ export default function LoginPopup (props) {
         break;
     }
 
-    validateField(name, value);
   }
 
   function handleSubmit(evt){

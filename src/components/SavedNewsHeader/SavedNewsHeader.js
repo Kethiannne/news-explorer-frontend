@@ -21,9 +21,11 @@ export default function SavedNewsHeader (props) {
       <Header
         isLoggedIn={ props.isLoggedIn }
         page={ props.page }
-        navMod={ 'header__black-text' }
         openLogin={ props.openLogin }
         handleLogout={ props.handleLogout }
+        isNavMenuOpen={ props.isNavMenuOpen }
+        openNavMenu={ props.openNavMenu }
+
       >
       </Header>
       <div className='savedNewsHeader__about'>

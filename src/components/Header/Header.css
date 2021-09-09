@@ -1,6 +1,7 @@
 .header-news-wrapper{
   background-image: url('../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.png');
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   width: 100%;
   max-height: 576px;
@@ -23,12 +24,22 @@
   margin: 22px 0;
 }
 
-.header__main {
-  border-bottom: rgb(158, 158, 158) solid 1px;
-
+.header__underline_light {
+  border-bottom: rgba(158, 158, 158, .6) solid 1px;
 }
 
-.header__black-text {
-  color: black;
-  border-bottom: rgb(158, 158, 158) solid 1px;
+.header__underline_dark {
+  border-bottom: lightgray solid 1px;
+}
+
+@media screen and (max-width: 720px) {
+  .header {
+    padding: 0 16px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-news-wrapper {
+    max-height: 536px;
+  }
 }

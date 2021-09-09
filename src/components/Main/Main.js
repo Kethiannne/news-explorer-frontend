@@ -11,6 +11,7 @@ export default function Main (props) {
       <div className='header-news-wrapper'>
         <Header
           isLoggedIn={ props.isLoggedIn }
+          openNavMenu={ props.openNavMenu }
           handleLogout={ props.handleLogout }
           openLogin={ props.openLogin }
           page={ 'main' }
@@ -21,6 +22,8 @@ export default function Main (props) {
       </div>
       <NewsCardsList
         isLoggedIn={ props.isLoggedIn }
+        loading={ props.loading }
+        results={ props.results }
         newsCards={ props.newsCards }
         page={ 'main' }
         newsCardSave={props.newsCardSave}

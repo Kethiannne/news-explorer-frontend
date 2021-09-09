@@ -97,7 +97,7 @@ export default function NewsCard(props) {
         </h2>
 
         <p className='newsCard__text'>
-          { `"${props.text}"` }
+          { props.text }
         </p>
 
         <p className='newsCard__source'>

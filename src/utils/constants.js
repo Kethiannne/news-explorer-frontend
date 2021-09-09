@@ -9,7 +9,7 @@ export const settings = {
 export const defaultCardList = [
   {
     "_id": {
-        "$oid": "aaa"
+        "$oid": "1"
     },
     "keyword": "forest",
     "title": "Big Trees",
@@ -21,7 +21,67 @@ export const defaultCardList = [
     "owner": {
         "$oid": "aaa"
     }
-}
+  },
+  {
+    "_id": {
+        "$oid": "2"
+    },
+    "keyword": "forest",
+    "title": "Big Trees lotta trees in there, its a forest An alternative to useState. Accepts a reducer of type",
+    "text": "lotta trees in there, its a forest An alternative to useState. Accepts a reducer of type (state, action) => newState, and returns the current state paired with a dispatch method. (If you’re familiar with Redux, you already know how this works.)useReducer is to is to is to is to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.",
+    "date": "June 21, 2010",
+    "source": "A Dream I Had One Time",
+    "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
+    "owner": {
+        "$oid": "aaa"
+    }
+  },
+  {
+    "_id": {
+        "$oid": "3"
+    },
+    "keyword": "forest",
+    "title": "Big Trees",
+    "text": "lotta trees in there, its a forest An alternative to useState. Accepts a reducer of type (state, action) => newState, and returns the current state paired with a dispatch method. (If you’re familiar with Redux, you already know how this works.)useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.",
+    "date": "June 21, 2010",
+    "source": "A Dream I Had One Time",
+    "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
+    "owner": {
+        "$oid": "aaa"
+    }
+  },
+  {
+    "_id": {
+        "$oid": "4"
+    },
+    "keyword": "forest",
+    "title": "Big Trees",
+    "text": "lotta trees in there, its a forest An alternative to useState. Accepts a reducer of type (state, action) => newState, and returns the current state paired with a dispatch method. (If you’re familiar with Redux, you already know how this works.)useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.",
+    "date": "June 21, 2010",
+    "source": "A Dream I Had One Time",
+    "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
+    "owner": {
+        "$oid": "aaa"
+    }
+  },
+  {
+    "_id": {
+        "$oid": "5"
+    },
+    "keyword": "forest",
+    "title": "Big Trees",
+    "text": "lotta trees in there, its a forest An alternative to useState. Accepts a reducer of type (state, action) => newState, and returns the current state paired with a dispatch method. (If you’re familiar with Redux, you already know how this works.)useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.",
+    "date": "June 21, 2010",
+    "source": "A Dream I Had One Time",
+    "link": "https://www.nytimes.com/2021/08/23/travel/mongolia-dukha-reindeer-herders.html",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.newoxfordreview.org%2Fwp-content%2Fuploads%2FBanyan-Tree.jpg&f=1&nofb=1",
+    "owner": {
+        "$oid": "aaa"
+    }
+  },
 ]
 
 export const keywords = [];

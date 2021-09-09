@@ -116,7 +116,7 @@
 
 @media screen and (max-width: 770px) {
   .form {
-    width: 240px;
+    width: 430px;
   }
 
   .form__title {
@@ -126,7 +126,7 @@
   }
 
   .form__field {
-    max-width: 238px;
+    width: 80%;
   }
 
   .form__save-button {
@@ -136,7 +136,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 520px) {
   .form {
     width: 100vw;
     height: 90vh;

@@ -37,35 +37,35 @@ export default function SignupPopup (props) {
 
 
   function validateField(input, value) {
-    let eError = emailError;
-    let pError = passwordError;
-    let uError = userNameError;
-    let eValid = emailValid;
-    let pValid = passwordValid;
-    let uValid = userNameValid;
+    let emailErrorText = emailError;
+    let passwordErrorText = passwordError;
+    let userNameErrorText = userNameError;
+    let isEmailValid = emailValid;
+    let isPasswordValid = passwordValid;
+    let isUserNameValid = userNameValid;
     switch(input) {
       case 'email':
-        eValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && value.length >= 2;
-        eError = emailValid ? '' : ' is invalid';
+        isEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && value.length >= 2;
+        emailErrorText = isEmailValid ? '' : ' is invalid';
         break;
       case 'password':
-        pValid = value.length >= 6;
-        pError = passwordValid ? '': ' is too short';
+        isPasswordValid = value.length >= 6;
+        passwordErrorText = isPasswordValid ? '': ' is too short';
         break;
       case 'userName':
-        uValid = value.length >= 2;
-        uError = userNameValid ? '': ' is too short';
+        isUserNameValid = value.length >= 2;
+        userNameErrorText = isUserNameValid ? '': ' is too short';
       break;
       default:
         break;
     }
 
-    setEmailError(eError);
-    setPasswordError(pError);
-    setUsernameError(uError);
-    setEmailValid(eValid);
-    setPasswordValid(pValid);
-    setUsernameValid(uValid);
+    setEmailError(emailErrorText);
+    setPasswordError(passwordErrorText);
+    setUsernameError(userNameErrorText);
+    setEmailValid(isEmailValid);
+    setPasswordValid(isPasswordValid);
+    setUsernameValid(isUserNameValid);
   }
 
 

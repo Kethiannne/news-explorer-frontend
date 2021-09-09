@@ -16,7 +16,8 @@ import SavedNews from '../SavedNews/SavedNews';
 // Popup Imports
 import LoginPopup from '../LoginPopup/LoginPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
-import SignupToolTip from '../SignupToolTip/SIgnupToolTip'
+import SignupToolTip from '../SignupToolTip/SIgnupToolTip';
+import NavMenu from '../NavMenu/NavMenu'
 
 // Footer Import
 import Footer from '../Footer/Footer';
@@ -26,6 +27,7 @@ import Footer from '../Footer/Footer';
 
 // Apis
 import MainApi from '../../utils/mainApi'
+import Navigation from '../Navigation/Navigation';
 
 
 function App(props) {
@@ -39,6 +41,10 @@ function App(props) {
     const [isLoginOpen, setIsLoginOpen] = React.useState(false);
     const [isSignupOpen, setIsSignupOpen] = React.useState(false);
     const [isToolTipOpen, setIsToolTipOpen] = React.useState(false);
+    const [isNavMenuOpen, setIsNavMenuOpen] = React.useState(false);
+
+    const [loading, setLoading] = React.useState(false);
+    const [results, setResults] = React.useState(true);
     const [newsCards, setNewsCards] = React.useState(defaultCardList);
 
     const history = props.history;
@@ -50,6 +56,7 @@ function App(props) {
       setIsLoginOpen(false);
       setIsSignupOpen(false);
       setIsToolTipOpen(false);
+      setIsNavMenuOpen(false);
     }
 
     function handleLoginOpen() {
@@ -62,6 +69,9 @@ function App(props) {
 
     function handleToolTipOpen() {
       setIsToolTipOpen(true);
+    }
+    function handleNavMenuOpen() {
+      setIsNavMenuOpen(true);
     }
   //-----------------------------------------------------------------
 
@@ -165,9 +175,13 @@ function App(props) {
           <Route exact path='/'>
             <Main
               isLoggedIn={ loggedIn }
+              isNavMenuOpen={ isNavMenuOpen }
               searchSubmit={ searchSubmit }
               openLogin={ handleLoginOpen }
+              openNavMenu={ handleNavMenuOpen }
               handleLogout={ handleLogout }
+              loading={ loading }
+              results={ results }
               newsCards={ newsCards }
               newsCardSave={ newsCardSave }
             />
@@ -178,8 +192,12 @@ function App(props) {
           <ProtectedRoute path='/saved-news'
             component={ SavedNews }
             isLoggedIn={ loggedIn }
+            isNavMenuOpen={ isNavMenuOpen }
             openLogin={ handleLoginOpen }
+            openNavMenu={ handleNavMenuOpen }
             handleLogout={ handleLogout }
+            loading={ loading }
+            results={ results }
             newsCards={ newsCards }
             newsCardDelete={ newsCardDelete }
           />
@@ -188,8 +206,12 @@ function App(props) {
           <Route path='/saved-news'>
             <SavedNews
               isLoggedIn={ loggedIn }
+              isNavMenuOpen={ isNavMenuOpen }
               openLogin={ handleLoginOpen }
+              openNavMenu={ handleNavMenuOpen }
               handleLogout={ handleLogout }
+              loading={ loading }
+              results={ results }
               newsCards={ newsCards }
               newsCardDelete={ newsCardDelete }
             />
@@ -204,6 +226,13 @@ function App(props) {
 
         {/* Components to be Available Regardless of Route */}
         <Footer />
+        <NavMenu
+          openLogin={ handleLoginOpen }
+          onClose={ closeAllPopups }
+          isNavMenuOpen={ isNavMenuOpen }
+        >
+
+        </NavMenu>
         <SignupPopup
           onClose={ closeAllPopups }
           isOpen={ isSignupOpen }

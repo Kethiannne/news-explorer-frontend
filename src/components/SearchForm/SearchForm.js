@@ -13,7 +13,7 @@ export default function Main (props) {
         What's going on in the world?
       </h1>
 
-      <p className='searchForm__caption'>
+      <p className='searchForm__subtitle'>
         Find the latest news on any topic and save them in your personal account.
       </p>
 
@@ -21,7 +21,7 @@ export default function Main (props) {
         <input name="keyword" value={ keyword } onChange={ handleChange } type="text" required
         className="searchForm__field" placeholder="Enter topic" minLength={ 2 } maxLength={ 40 } />
 
-        <button type="submit" className="searchForm__button button-hover">Search</button>
+        <button type="submit" className="searchForm__button">Search</button>
       </form>
     </div>
   )

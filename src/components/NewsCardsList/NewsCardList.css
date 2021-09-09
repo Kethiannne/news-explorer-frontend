@@ -5,6 +5,28 @@
   padding: 5%;
 }
 
+.newsCardList__container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 16px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1050px) {
+  .newsCardList__container {
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .newsCardList__container {
+    grid-template-columns: repeat(1, auto);
+    max-width: 282px;
+    gap: 10px;
+  }
+}
+
+
 .newsCardList__title {
   display: block;
   font-family: roboto-slab, Arial, Helvetica, sans-serif;

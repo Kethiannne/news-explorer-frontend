@@ -16,10 +16,14 @@
 @import url(./components/SavedNewsHeader/SavedNewsHeader.css);
 @import url(./components/SearchForm/SearchForm.css);
 @import url(./components/Header/Header.css);
-
+@import url(./components/NavMenu/NavMenu.css);
 @import url(./components/PopupWithForm/form.css);
 
 /* General CSS Rules */
+.black-text {
+  color: black;
+}
+
 .button-hover {
   transition: opacity 1s linear .2s;
   cursor: pointer;

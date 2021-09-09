@@ -2,15 +2,14 @@ import React from 'react';
 import Navigation from '../Navigation/Navigation'
 
 export default function Header (props) {
-  const page= props.page;
 
   const headerMod = function (page) {
-    if (page === 'main') {
-      return 'header__main'
+    if (page === 'savedNews') {
+      return 'black-text header__underline_dark'
     }
-    else if (page === 'savedNews') {
-      return 'header__black-text'
-    }
+
+    return 'header__main header__underline_light'
+
   }
 
   return (
@@ -18,10 +17,12 @@ export default function Header (props) {
       <h3 className='header__title'>NewsExplorer</h3>
       <Navigation
         isLoggedIn={ props.isLoggedIn }
+        isNavMenuOpen={ props.isNavMenuOpen }
         handleLogout={ props.handleLogout }
         openLogin={ props.openLogin }
-        navMod={ headerMod(props.page) }
+        openNavMenu={ props.openNavMenu }
         page={ props.page }
+        onClose={ props.onClose }
       />
     </div>
   )

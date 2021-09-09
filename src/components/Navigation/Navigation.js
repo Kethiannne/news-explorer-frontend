@@ -7,59 +7,81 @@ import logout_light from '../../images/logout_light.png';
 export default function Navigation (props) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  function renderMarkUp() {
-    if (props.isLoggedIn) {
-      return (
-        <div className='nav'>
-
-        <Link to='/' className={`nav__link button-hover
-        ${props.page === 'main' ? `nav__link-underline`: 'nav__link_inactive'}`}>
+  return (
+    <div className='nav'>
+      <div className='nav__standard'>
+        <Link
+          to='/'
+          className={
+            `nav__link button-hover
+            ${ props.page === 'main' ? `nav__link-underline`: 'nav__link_inactive' }`
+          }
+        >
           Home
         </Link>
 
-        <Link
-          to='/saved-news'
-          className={`nav__link button-hover ${props.navMod}
-          ${props.page === 'savedNews' ? `nav__link-underline_dark`: 'nav__link_inactive'}`}
+        <div
+          className={
+            `${ props.page === 'savedNews' ? `nav__link-underline_dark`: '' }
+            ${ props.isLoggedIn ? '': 'nav__noDisplay'}`
+          }
         >
+          <Link
+            to='/saved-news'
+            className={
+              `nav__link button-hover
+              ${ props.page === 'savedNews' ? `black-text`: 'nav__link_inactive'}`
+            }
+          >
           Saved articles
-        </Link>
+          </Link>
+        </div>
+
 
         <button
           type="button"
-          className={`nav__button nav__button_logout button-hover ${props.navMod}`}
+          className={ `nav__button nav__button_logout button-hover
+            ${ props.page === 'savedNews' ? 'black-text nav__button_logout_black': '' }
+            ${ props.isLoggedIn ? '': 'nav__noDisplay'}`
+          }
           onClick={ props.handleLogout }
         >
-          { currentUser.name ? currentUser.name : 'Playing with Dev tools?' }
-          <img src={ props.page === 'main' ? logout_light: logout } className='nav__logout-img' alt='logout'/>
+          <div
+            className='nav__logout-text'
+          >
+            { currentUser.name ? currentUser.name : 'Playing with Dev tools?' }
+          </div>
+          <img
+            src={ props.page === 'main' ? logout_light: logout }
+            className='nav__logout-img'
+            alt='logout'/>
         </button>
 
-        </div>
-      )
-    }
-    return (
+        <button
+          type="button"
+          className={
+            `nav__button button-hover  button-hover
+            ${ props.isLoggedIn ? 'nav__noDisplay': '' }`
+          }
+          onClick={ props.openLogin }
+        >
+          Sign in
+        </button>
+      </div>
 
-      // As a note, the text becomes black when the user is logged in
-
-      <div className='nav'>
-
-      <Link to='/' className={`nav__link button-hover
-        ${props.page === 'main' ? `nav__link-underline`: ''}`}>
-        Home
-      </Link>
+      <div className='nav__mobile-view'>
       <button
         type="button"
-        className={`nav__button button-hover  button-hover`}
-        onClick={ props.openLogin }
+        className={
+          `nav__menu-button
+          ${ props.isNavMenuOpen ? 'nav__close': (props.page === 'savedNews' ? 'nav__open_dark' : 'nav__open') }
+          `
+        }
+        onClick={ () => { props.isNavMenuOpen ? props.onClose() : props.openNavMenu() } }
       >
-          Sign in
       </button>
 
       </div>
-    )
-  }
-
-  return (
-    renderMarkUp()
+    </div>
   )
 }

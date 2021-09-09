@@ -4,7 +4,6 @@
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  min-width: 282px;
   max-width: 400px;
   position: relative;
   justify-content: flex-end;
@@ -25,6 +24,7 @@
 
 .newsCard__util-container {
   display:flex;
+  position: relative;
   flex-direction: row-reverse;
 }
 
@@ -37,6 +37,7 @@
   background-color: white;
   border-radius: 8px;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   padding: 0 20px;
@@ -57,7 +58,7 @@
 }
 
 .newsCard__util {
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   border: none;
   border-radius: 8px;
@@ -93,16 +94,14 @@
 
 .newsCard__article {
   padding-left: 24px;
+  width: 90%;
 }
 
 .newsCard__date {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  letter-spacing: 0px;
-  text-align: left;
   color: rgba(182, 188, 191, 1);
   margin: 0 0 12px;
 }
@@ -114,6 +113,7 @@
   line-height: 30px;
   margin: 0 0 16px;
   height: 60px;
+  width: 95%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -126,19 +126,87 @@
   line-height: 22px;
   margin: 0 0 18px;
   height: 110px;
+  width: 95%;
+  overflow: hidden;
+}
+
+.newsCard__source {
+  font-family: roboto-slab, Arial, Helvetica, sans-serif;
+  max-width: 90%;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(182, 188, 191, 1);
+  margin: 0 0 24px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.newsCard__source {
-  font-family: roboto-slab, Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 20px;
-  text-align: left;
-  letter-spacing: .4px;
-  color: rgba(182, 188, 191, 1);
-  margin: 0 0 24px;
+@media screen and (max-width: 1300px) {
+  .newsCard {
+    max-width: 300px;
+  }
+
+  .newsCard__image {
+    max-width: 300px;
+  }
+
 }
+
+@media screen and (max-width: 1050px) {
+  .newsCard {
+    max-width: 224px;
+  }
+
+  .newsCard__image {
+    max-width: 224px;
+  }
+
+  .newsCard__util-container {
+    left: -60px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .newsCard {
+    max-width: 288px;
+  }
+
+  .newsCard__image {
+    max-width: 288px;
+  }
+
+  .newsCard__util-container {
+    left: 0px;
+  }
+
+}
+/* a mixin i found to handle multiline blocks of text with truncation */
+/* styles for '...' */
+/* .newsCard__text {
+  overflow: hidden;
+  position: relative;
+  line-height: 22px;
+  max-height: 110px;
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+/* create the ... */
+/* .newsCard__text:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.newsCard__text:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+  color: white;
+} */
