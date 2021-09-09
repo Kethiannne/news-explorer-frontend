@@ -19,7 +19,7 @@
 
 .about__article {
   max-width: 600px;
-  margin-top: 130px;
+  margin: auto 0;
 }
 
 .about__article-title {

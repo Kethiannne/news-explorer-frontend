@@ -143,6 +143,17 @@
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 1370px) {
+  .newsCard {
+    max-width: 350px;
+  }
+
+  .newsCard__image {
+    max-width: 350px;
+  }
+
+}
+
 @media screen and (max-width: 1300px) {
   .newsCard {
     max-width: 300px;
@@ -167,6 +178,7 @@
     left: -60px;
   }
 }
+
 @media screen and (max-width: 750px) {
   .newsCard {
     max-width: 288px;
@@ -179,34 +191,4 @@
   .newsCard__util-container {
     left: 0px;
   }
-
 }
-/* a mixin i found to handle multiline blocks of text with truncation */
-/* styles for '...' */
-/* .newsCard__text {
-  overflow: hidden;
-  position: relative;
-  line-height: 22px;
-  max-height: 110px;
-  margin-right: -1em;
-  padding-right: 1em;
-}
-
-/* create the ... */
-/* .newsCard__text:before {
-  content: '...';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-.newsCard__text:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  background: white;
-  color: white;
-} */
