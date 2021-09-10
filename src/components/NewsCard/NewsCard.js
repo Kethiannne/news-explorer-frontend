@@ -47,7 +47,7 @@ export default function NewsCard(props) {
   }
 
   return (
-    <div className="newsCard">
+    <li className="newsCard">
       <div className="newsCard__image"
         style={{ backgroundImage: `url(${props.image})` }}
       >
@@ -100,6 +100,6 @@ export default function NewsCard(props) {
           { props.source }
         </p>
       </article>
-    </div>
+    </li>
   )
 }

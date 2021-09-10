@@ -17,7 +17,7 @@ export default function NewsCardList(props) {
   );
 
   const cardList = (
-    <div className='newsCardList__container'>
+    <ul className='newsCardList__container'>
       { (props.page === 'main' ? props.newsCards.slice(0, howMany) : props.newsCards).map((newsCard) =>
         {
           return (
@@ -31,7 +31,7 @@ export default function NewsCardList(props) {
             />)
         })
       }
-    </div>
+    </ul>
   );
 
   const showMoreButton = (

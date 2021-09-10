@@ -34,6 +34,8 @@
 
 .footer__socials {
   display: flex;
+  list-style-type: none;
+  padding-left: none;
 }
 
 .footer__github {

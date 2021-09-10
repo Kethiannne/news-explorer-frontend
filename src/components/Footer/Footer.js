@@ -22,18 +22,22 @@ export default function Footer (props) {
           >
             Practicum By Yandex
           </Link>
-          <div className='footer__socials'>
-            <Link
-              to='https://github.com/Kethiannne'
-              target="_blank"
-              className='footer__link_social footer__github button-hover'
-            />
-            <Link
-              to='https://facebook.com/durnvall'
-              target="_blank"
-              className='footer__link_social footer__facebook button-hover'
-            />
-          </div>
+          <ul className='footer__socials'>
+            <li>
+              <Link
+                to={ { pathname: 'https://github.com/Kethiannne' } }
+                target="_blank"
+                className='footer__link_social footer__github button-hover'
+              />
+            </li>
+            <li>
+              <Link
+                to={ { pathname: 'https://facebook.com/durnvall' } }
+                target="_blank"
+                className='footer__link_social footer__facebook button-hover'
+              />
+            </li>
+          </ul>
       </div>
     </footer>
   )
