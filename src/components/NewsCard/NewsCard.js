@@ -17,9 +17,9 @@ export default function NewsCard(props) {
 
   // Function for determining the util button's css
   function newsCardUtilButton() {
-    return `newsCard__util ${ (props.page === 'main') ?
-      ((isSaved() === true) ? `newsCard__saved` : `newsCard__save` ) :
-      `newsCard__delete`}`
+    return `news-card__util ${ (props.page === 'main') ?
+      ((isSaved() === true) ? `news-card__saved` : `news-card__save` ) :
+      `news-card__delete`}`
 
   };
 
@@ -47,19 +47,19 @@ export default function NewsCard(props) {
   }
 
   return (
-    <li className="newsCard">
-      <div className="newsCard__image"
+    <li className="news-card">
+      <div className="news-card__image"
         style={{ backgroundImage: `url(${props.image})` }}
       >
-          <div className={`newsCard__toolTip ${props.page === 'main' ? `newsCard__keyword`: ``}`}>
-          <p className='newsCard__tooltip-text'>
+          <div className={`news-card__toolTip ${props.page === 'main' ? `news-card__keyword`: ``}`}>
+          <p className='news-card__tooltip-text'>
             {props.keyword}
           </p>
         </div>
 
-        <div className='newsCard__util-container'>
+        <div className='news-card__util-container'>
           <button
-            className= {`${ newsCardUtilButton() } ${ isLoggedIn ? `` : `newsCard__toolTip_hover` }`}
+            className= {`${ newsCardUtilButton() } ${ isLoggedIn ? `` : `news-card__toolTip_hover` }`}
 
             // Handles what the button does under different conditions.
             // allows it to be both the save and delete button,
@@ -75,28 +75,28 @@ export default function NewsCard(props) {
             type="button">
           </button>
 
-          <div className='newsCard__toolTip newsCard__popIn'>
-            <p className='newsCard__tooltip-text'>
+          <div className='news-card__toolTip news-card__popIn'>
+            <p className='news-card__tooltip-text'>
               Sign in to save articles
             </p>
           </div>
         </div>
 
       </div>
-      <article className="newsCard__article">
-        <p className='newsCard__date'>
+      <article className="news-card__article">
+        <p className='news-card__date'>
           { props.date }
         </p>
 
-        <h2 className="newsCard__title">
+        <h2 className="news-card__title">
           { props.title }
         </h2>
 
-        <p className=' line-clamp newsCard__text'>
+        <p className=' line-clamp news-card__text'>
           { props.text }
         </p>
 
-        <p className='newsCard__source'>
+        <p className='news-card__source'>
           { props.source }
         </p>
       </article>

@@ -7,7 +7,7 @@ import About from '../About/About';
 export default function Main (props) {
 
   return (
-    <main className='main__wrapper'>
+    <main>
       <div className='header-news-wrapper'>
         <Header
           isLoggedIn={ props.isLoggedIn }

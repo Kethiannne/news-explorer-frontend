@@ -18,11 +18,11 @@
   line-height: 67px;
 }
 
-.nav__link-underline {
+.nav__link_underline {
   border-bottom: 3px solid white;
 }
 
-.nav__link-underline_dark {
+.nav__link_underline-dark {
   border-bottom: 3px solid black;
 }
 

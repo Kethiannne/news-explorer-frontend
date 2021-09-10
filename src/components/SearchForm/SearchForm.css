@@ -1,4 +1,4 @@
-.searchForm {
+.search-form {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -7,28 +7,28 @@
   color: white;
 }
 
-.searchForm__title{
+.search-form__title{
   font-family: roboto-slab, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 60px;
   line-height: 64px;
 }
 
-.searchForm__subtitle {
+.search-form__subtitle {
   font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
 }
 
-.searchForm__form {
+.search-form__form {
   margin-top: 88px;
   max-width: 608px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.searchForm__field {
+.search-form__field {
   width: 608px;
   height: 64px;
   border-radius: 32px;
@@ -41,18 +41,18 @@
   line-height: 22px;
 }
 
-.searchForm__field:active,
-.searchForm__field:focus,
-.searchForm__field:focus:active {
+.search-form__field:active,
+.search-form__field:focus,
+.search-form__field:focus:active {
   outline: 0;
   box-shadow: none;
 }
 
-.searchForm__field::placeholder {
+.search-form__field::placeholder {
   color: rgba(182, 188, 191, 1);
 }
 
-.searchForm__button {
+.search-form__button {
   height: 66px;
   width: 168px;
   color: white;
@@ -71,60 +71,60 @@
   top: -114px;
 }
 
-.searchForm__button:hover {
+.search-form__button:hover {
   background-color: rgba(52, 126, 255, 1);
 }
 
-.searchForm__button:focus {
+.search-form__button:focus {
   background-color: rgba(42, 101, 204, 1);
 }
 
 @media screen and (max-width: 770px) {
-  .searchForm {
+  .search-form {
     max-width: 452px;
   }
 
-  .searchForm__title{
+  .search-form__title{
     font-size: 36px;
     line-height: 40px;
   }
 
-  .searchForm__subtitle {
+  .search-form__subtitle {
     font-size: 18px;
     line-height: 24px;
   }
 
-  .searchForm__field {
+  .search-form__field {
     width: 440px;
   }
-  .searchForm__button {
+  .search-form__button {
     right: -300px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .searchForm {
+  .search-form {
     max-width: 288px;
   }
-  .searchForm__title{
+  .search-form__title{
     margin: 30px auto 16px;
   }
 
-  .searchForm__subtitle {
+  .search-form__subtitle {
     margin: 0 auto;
   }
 
-  .searchForm__form {
+  .search-form__form {
     flex-wrap: wrap;
   }
 
-  .searchForm__field {
+  .search-form__field {
     height: 54px;
     width: 261px;
     margin-bottom: 16px;
   }
 
-  .searchForm__button {
+  .search-form__button {
     height: 56px;
     width: 288px;
     position: inherit;

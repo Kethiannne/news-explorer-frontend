@@ -35,7 +35,7 @@
 .footer__socials {
   display: flex;
   list-style-type: none;
-  padding-left: none;
+  padding-left: 0;
 }
 
 .footer__github {
@@ -51,6 +51,7 @@
 }
 
 .footer__link_social {
+  display: block;
   margin-right: 20px;
   width: 24px;
   height: 24px;
@@ -75,6 +76,7 @@
     flex-wrap: wrap;
     min-height: 90px;
     align-items: flex-start;
+    padding-top: 20px;
   }
   .footer__link {
     margin-bottom: 20px;

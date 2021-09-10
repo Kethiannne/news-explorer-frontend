@@ -23,11 +23,11 @@
   margin: 22px 0;
 }
 
-.header__underline_light {
+.header_underline-light {
   border-bottom: rgba(158, 158, 158, .6) solid 1px;
 }
 
-.header__underline_dark {
+.header_underline-dark {
   border-bottom: lightgray solid 1px;
 }
 

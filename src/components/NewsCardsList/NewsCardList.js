@@ -11,13 +11,13 @@ export default function NewsCardList(props) {
   }
 
   const searchResults = (
-    <h2 className={`newsCardList__title ${newsCardListMod}`}>
+    <h2 className={`news-card-list__title ${newsCardListMod}`}>
     Search Results
     </h2>
   );
 
   const cardList = (
-    <ul className='newsCardList__container'>
+    <ul className='news-card-list__container'>
       { (props.page === 'main' ? props.newsCards.slice(0, howMany) : props.newsCards).map((newsCard) =>
         {
           return (
@@ -35,11 +35,11 @@ export default function NewsCardList(props) {
   );
 
   const showMoreButton = (
-    <button className='newsCardList__loadButton button-hover' onClick={ addThree }>Show More</button>
+    <button className='news-card-list__loadButton button-hover' onClick={ addThree }>Show More</button>
   );
 
   return(
-    <div className='newsCardList'>
+    <div className='news-card-list'>
 
       {((props.loading === false) && (props.results === true) && (props.page === 'main')) ?
         searchResults : ''

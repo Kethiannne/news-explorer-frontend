@@ -90,7 +90,7 @@ export default function LoginPopup (props) {
   return (
     <PopupWithForm
     // Props
-      name='login-form'
+      name='form_login'
       title='Sign in'
       saveText='Sign in'
       isOpen={ props.isOpen }

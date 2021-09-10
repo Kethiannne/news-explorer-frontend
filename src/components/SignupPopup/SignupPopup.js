@@ -106,7 +106,7 @@ export default function SignupPopup (props) {
   return (
     <PopupWithForm
     // Props
-      name='registration-form'
+      name='form_registration'
       title='Sign up'
       saveText='Sign up'
       isOpen={ props.isOpen }

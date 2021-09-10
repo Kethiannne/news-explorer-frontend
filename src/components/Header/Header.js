@@ -5,15 +5,15 @@ export default function Header (props) {
 
   const headerMod = function (page) {
     if (page === 'savedNews') {
-      return 'black-text header__underline_dark'
+      return 'black-text header_underline-dark'
     }
 
-    return 'header__main header__underline_light'
+    return 'header__main header_underline-light'
 
   }
 
   return (
-    <div className={ `header ${ headerMod(props.page) }` }>
+    <header className={ `header ${ headerMod(props.page) }` }>
       <h3 className='header__title'>NewsExplorer</h3>
       <Navigation
         isLoggedIn={ props.isLoggedIn }
@@ -24,6 +24,6 @@ export default function Header (props) {
         page={ props.page }
         onClose={ props.onClose }
       />
-    </div>
+    </header>
   )
 }

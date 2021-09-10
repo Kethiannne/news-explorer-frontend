@@ -14,7 +14,7 @@ export default function Navigation (props) {
           to='/'
           className={
             `nav__link button-hover
-            ${ props.page === 'main' ? `nav__link-underline`: 'nav__link_inactive' }`
+            ${ props.page === 'main' ? `nav__link_underline`: 'nav__link_inactive' }`
           }
         >
           Home
@@ -22,7 +22,7 @@ export default function Navigation (props) {
 
         <div
           className={
-            `${ props.page === 'savedNews' ? `nav__link-underline_dark`: '' }
+            `${ props.page === 'savedNews' ? `nav__link_underline-dark`: '' }
             ${ props.isLoggedIn ? '': 'nav__noDisplay'}`
           }
         >
