@@ -8,7 +8,7 @@ export default function Navigation (props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <div className='nav'>
+    <nav className='nav'>
       <div className='nav__standard'>
         <Link
           to='/'
@@ -82,6 +82,6 @@ export default function Navigation (props) {
       </button>
 
       </div>
-    </div>
+    </nav>
   )
 }

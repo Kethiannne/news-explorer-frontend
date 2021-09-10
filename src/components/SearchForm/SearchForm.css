@@ -23,7 +23,9 @@
 
 .searchForm__form {
   margin-top: 88px;
+  max-width: 608px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .searchForm__field {
@@ -56,14 +58,21 @@
   color: white;
   background-color: #2F71E5;
   border-radius: 32px;
-  position: relative;
   border: none;
   z-index: 2;
-  right: 167px;
   font-family: roboto, Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
+  cursor: pointer;
+
+  position: relative;
+  right: -443px;
+  top: -114px;
+}
+
+.searchForm__button:hover {
+  background-color: rgba(52, 126, 255, 1);
 }
 
 .searchForm__button:focus {
@@ -87,6 +96,9 @@
 
   .searchForm__field {
     width: 440px;
+  }
+  .searchForm__button {
+    right: -300px;
   }
 }
 

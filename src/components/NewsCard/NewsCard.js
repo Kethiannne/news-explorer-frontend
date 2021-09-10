@@ -17,15 +17,10 @@ export default function NewsCard(props) {
 
   // Function for determining the util button's css
   function newsCardUtilButton() {
-    if (isSaved() === true) {
-      // if saved
-      return (props.page === 'main'?
-        'newsCard__util newsCard__saved':
-        `newsCard__util newsCard__delete button-hover`
-      )
-    }
-    // if not saved
-    return `newsCard__util newsCard__save`
+    return `newsCard__util ${ (props.page === 'main') ?
+      ((isSaved() === true) ? `newsCard__saved` : `newsCard__save` ) :
+      `newsCard__delete`}`
+
   };
 
   //functions for adding onto a list of keywords and number of saved cards

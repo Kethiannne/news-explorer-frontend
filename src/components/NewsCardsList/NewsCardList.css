@@ -2,7 +2,8 @@
   min-height: 50px;
   color: black;
   background-color: rgba(245, 246, 247, 1);
-  padding: 5%;
+  padding-top: 80px;
+  padding-bottom: 40px;
 }
 
 .newsCardList__container {
@@ -10,8 +11,10 @@
   grid-template-columns: repeat(3, auto);
   gap: 16px;
   margin: 0 auto;
-  max-width: 1232px;
-
+  max-width: 95%;
+  justify-items: center;
+  min-height: 0;
+  min-width: 0;
 }
 
 .newsCardList__title {
@@ -20,8 +23,7 @@
   font-size: 30px;
   font-weight: 400;
   line-height: 34px;
-  margin: 0;
-  margin-bottom: 32px;
+  margin: 0 0 32px 5%;
 }
 
 .newsCardList__loadButton {
@@ -48,6 +50,10 @@
 }
 
 @media screen and (max-width: 750px) {
+  .newsCardList {
+    padding: 32px 0;
+  }
+
   .newsCardList__container {
     grid-template-columns: repeat(1, auto);
     max-width: 282px;
