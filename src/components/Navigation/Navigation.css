@@ -1,0 +1,116 @@
+.nav {
+  font-family: roboto, Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav__standard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: white;
+  margin: 0 20px;
+  line-height: 67px;
+}
+
+.nav__link_underline {
+  border-bottom: 3px solid white;
+}
+
+.nav__link_underline-dark {
+  border-bottom: 3px solid black;
+}
+
+.nav__link_inactive {
+  color: rgba(182, 188, 191, 1);
+}
+
+.nav__button {
+  background-color: transparent;
+  border: white solid 1px;
+  border-radius: 20px;
+  width: 175px;
+  height: 40px;
+  margin: 0 0 0 20px;
+  color: white;
+}
+
+.nav__logout-text {
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav__logout-img {
+  max-width: 24px;
+  max-height: 24px;
+  margin-left: 20px;
+}
+
+.nav__button_logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 176px;
+  padding: 0 10px 0 15px;
+}
+
+.nav__noDisplay {
+  display: none;
+}
+
+.nav__mobile-view {
+  display: none;
+}
+
+.nav__menu-button{
+  background-color: transparent;
+  border: none;
+  background-size: 24px 24px;
+  height: 24px;
+  width: 24px;
+  margin: auto 0;
+  padding: 0;
+}
+
+.nav__menu-button:active,
+.nav__menu-button:focus,
+.nav__menu-button:focus:active {
+  outline: 0;
+  box-shadow: none;
+}
+
+.nav__close {
+  background-image: url(../../images/Close-Icon.svg);
+}
+
+.nav__open {
+  background-image: url(../../images/menu.svg);
+}
+
+.nav__open_dark {
+  background-image: url(../../images/menu-dark.svg);
+}
+
+.nav__button_logout_black {
+  border: black solid 1px;
+}
+
+@media screen and (max-width: 720px){
+
+  .nav__standard {
+    display: none;
+  }
+  .nav__mobile-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}

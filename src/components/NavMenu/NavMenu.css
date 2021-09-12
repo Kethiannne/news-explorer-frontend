@@ -1,0 +1,35 @@
+.nav-menu {
+  background-color: rgba(26, 27, 34, 1);
+  width: 100vw;
+  max-height: 286px;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-menu__link {
+  font-family: roboto, Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 56px;
+  text-decoration: none;
+  margin-left: 5%;
+}
+
+.nav-menu__button {
+  width: 288px;
+  height: 56px;
+  background-color: transparent;
+  border-radius: 28px;
+  border: white 1px solid;
+  color: white;
+  font-family: roboto, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+  margin: 0 auto 24px;
+}

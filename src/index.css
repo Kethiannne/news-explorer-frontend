@@ -1,0 +1,34 @@
+/* Vendors */
+@import url(./vendors/normalize.css);
+@import url(./vendors/fonts/inter.css);
+@import url(./vendors/fonts/roboto.css);
+@import url(./vendors/fonts/roboto-slab.css);
+
+/* Components CSS Files */
+@import url(./components/App/App.css);
+@import url(./components/About/About.css);
+@import url(./components/Footer/Footer.css);
+@import url(./components/Navigation/Navigation.css);
+@import url(./components/NewsCard/NewsCard.css);
+@import url(./components/NewsCardsList/NewsCardList.css);
+@import url(./components/PopupWithForm/PopupWithForm.css);
+@import url(./components/NoCards/NoCards.css);
+@import url(./components/SavedNewsHeader/SavedNewsHeader.css);
+@import url(./components/SearchForm/SearchForm.css);
+@import url(./components/Header/Header.css);
+@import url(./components/NavMenu/NavMenu.css);
+@import url(./components/PopupWithForm/form.css);
+
+/* General CSS Rules */
+.black-text {
+  color: black;
+}
+
+.button-hover {
+  transition: opacity 1s linear .2s;
+  cursor: pointer;
+}
+
+.button-hover:hover {
+  opacity: .6;
+}
