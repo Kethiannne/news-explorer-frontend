@@ -4,7 +4,22 @@ import SearchForm from '../SearchForm/SearchForm';
 import NewsCardsList from '../NewsCardsList/NewsCardList'
 import About from '../About/About';
 
+import { useLocation } from 'react-router-dom';
+
+
+
 export default function Main (props) {
+
+  // Effect to open an alert if unauthorized traffic tries to go where they don't belong
+
+  const location = useLocation();
+  React.useEffect(()=>{
+    if(location.state === 'Login Redirect') {
+      alert('Login first to access saved articles');
+    }
+  },[])
+
+
 
   return (
     <main>

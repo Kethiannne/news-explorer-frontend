@@ -5,7 +5,7 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 // Utility Imports
 import api from '../../utils/mainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-// import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute';
 import { authorize, checkToken, register } from '../../utils/auth';
 import { defaultCardList } from '../../utils/constants'
 
@@ -22,18 +22,15 @@ import NavMenu from '../NavMenu/NavMenu'
 // Footer Import
 import Footer from '../Footer/Footer';
 
-// Preloader
-// implement preloader import here
 
 // Apis
 import MainApi from '../../utils/mainApi'
-import Navigation from '../Navigation/Navigation';
 
 
 function App(props) {
   // A Section For States
   //-----------------------------------------------------------------
-    const [loggedIn, setLoggedIn] = React.useState(false)
+    const [loggedIn, setLoggedIn] = React.useState(false);
     const [jwt, setJwt] = React.useState('');
     const [doneChecking, setDoneChecking] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
@@ -50,8 +47,6 @@ function App(props) {
 
     const history = props.history;
   //-----------------------------------------------------------------
-
-
 
   // A Section for Opening and Closing Popups
   //-----------------------------------------------------------------
@@ -73,6 +68,7 @@ function App(props) {
     function handleToolTipOpen() {
       setIsToolTipOpen(true);
     }
+
     function handleNavMenuOpen() {
       setIsNavMenuOpen(true);
     }
@@ -82,36 +78,36 @@ function App(props) {
   //-----------------------------------------------------------------
 
   // A Call for Checking User Token
-    // React.useEffect(()=> {
-    //   if (localStorage.getItem('jwt')) {
-    //     const token = localStorage.getItem('jwt');
-    //     setJwt(token);
-    //     checkToken(token)
-    //       .then(data => {
-    //         setLoggedIn(true);
-    //         history.push('/');
-    //       })
-    //       .then(()=>{
-    //         setDoneChecking(true);
-    //       })
-    //       .catch(err => {
-    //         console.log((`jwt checker broken: ${ err }`))
-    //       })
-    //   } else {
-    //     console.log('no jwt found');
-    //     setDoneChecking(true);
-    //   }
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [loggedIn])
+    React.useEffect(()=> {
+      if (localStorage.getItem('jwt')) {
+        const token = localStorage.getItem('jwt');
+        setJwt(token);
+        checkToken(token)
+          .then(data => {
+            console.log(data)
+            setLoggedIn(true);
+          })
+          .then(()=>{
+            setDoneChecking(true);
+          })
+          .catch(err => {
+            setDoneChecking(true);
+
+            console.log((`jwt checker broken: ${ err }`))
+          })
+      } else {
+        console.log('no jwt found');
+        setDoneChecking(true);
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loggedIn])
 
   // A Call For Logging a User in
     function loginAuthorize(email, password) {
       authorize(email, password)
         .then(() => {
           setLoggedIn(true);
-        })
-        .then(() => {
-          history.push('/');
+          closeAllPopups();
         })
         .catch(err => {
           setLoggedIn(false)
@@ -122,7 +118,9 @@ function App(props) {
   // A Call for Registering the user
     function registerUser(email, password, name) {
       register(email, password, name)
-        .then(()=>{
+        .then((res)=>{
+          console.log(res);
+          closeAllPopups();
           handleToolTipOpen();
         })
         .catch(err => {
@@ -168,7 +166,7 @@ function App(props) {
       MainApi.createArticle(obj);
     }
 
-  // if (!doneChecking) {return <div></div>}
+   if (!doneChecking) {return <div></div>}
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page__wrapper">
@@ -179,9 +177,9 @@ function App(props) {
             <Main
               isLoggedIn={ loggedIn }
               isNavMenuOpen={ isNavMenuOpen }
+              openNavMenu={ handleNavMenuOpen }
               searchSubmit={ searchSubmit }
               openLogin={ handleLoginOpen }
-              openNavMenu={ handleNavMenuOpen }
               handleLogout={ handleLogout }
               loading={ loading }
               results={ results }
@@ -191,7 +189,6 @@ function App(props) {
           </Route>
 
           {/* User Saved Articles */}
-          {/* protected routing for later
           <ProtectedRoute path='/saved-news'
             component={ SavedNews }
             isLoggedIn={ loggedIn }
@@ -204,21 +201,6 @@ function App(props) {
             newsCards={ newsCards }
             newsCardDelete={ newsCardDelete }
           />
-          */}
-
-          <Route path='/saved-news'>
-            <SavedNews
-              isLoggedIn={ loggedIn }
-              isNavMenuOpen={ isNavMenuOpen }
-              openLogin={ handleLoginOpen }
-              openNavMenu={ handleNavMenuOpen }
-              handleLogout={ handleLogout }
-              loading={ loading }
-              results={ results }
-              newsCards={ newsCards }
-              newsCardDelete={ newsCardDelete }
-            />
-          </Route>
 
           {/* Global Redirect */}
           <Route path='/*'>
@@ -244,6 +226,7 @@ function App(props) {
         />
         <SignupToolTip
           onClose={ closeAllPopups }
+          openLogin={ handleLoginOpen }
           isOpen={ isToolTipOpen }
         />
         <LoginPopup

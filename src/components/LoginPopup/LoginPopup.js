@@ -35,7 +35,6 @@ export default function LoginPopup (props) {
     let passwordErrorText = passwordError;
     let isEmailValid = emailValid;
     let isPasswordValid = passwordValid;
-    console.log('poke');
     switch(input) {
       case 'email':
         isEmailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);

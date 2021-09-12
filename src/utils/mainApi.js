@@ -76,5 +76,5 @@ class MainApi {
 }
 
 export default new MainApi({
-  baseURL: process.env.NODE_ENV === "production" ? 'https://api.kethnews.students.nomoreparties.site' : 'http://localhost:3000',
+  baseURL: 'https://kethnews.students.nomoreparties.site',
 });

@@ -26,7 +26,7 @@ export default function SignupToolTip (props) {
         </button>
         <div className='form'>
           <h3 className='form__title'>Registration Successfully Completed!</h3>
-          <p className='form__link_tooltip' onClick={() => {
+          <p className='form__link_tooltip tooltip__text' onClick={() => {
             props.onClose();
             props.openLogin();
             }

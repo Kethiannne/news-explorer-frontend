@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.NODE_ENV === "production" ? 'https://api.kethnews.students.nomoreparties.site' : 'http://localhost:3000';
+export const BASE_URL = 'https://kethnews.students.nomoreparties.site';
 
 function getSuccessfulReturn(res){
   if (res.ok) {
@@ -15,9 +15,10 @@ function getSuccessfulReturn(res){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({password, email, name})
+      body: JSON.stringify({email, password, name})
     })
     .then((res) => {
+      console.log(res);
       return getSuccessfulReturn(res);
     })
     .then((res) => {
