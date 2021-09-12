@@ -15,7 +15,7 @@ export default function Main (props) {
   const location = useLocation();
   React.useEffect(()=>{
     if(location.state === 'Login Redirect') {
-      alert('Login first to access saved articles');
+      props.openLogin();
     }
   },[])
 
