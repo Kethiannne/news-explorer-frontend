@@ -60,7 +60,10 @@ export default function NewsCardList(props) {
 
       {(props.loading === false && props.results === true) ? cardList : <NoCards loading={ props.loading } results={ props.results }/>}
 
-      {((props.loading === false) && (props.results === true) && (props.page === 'main')) ?
+      {((props.loading === false) &&
+        (props.results === true) &&
+        (props.page === 'main') &&
+        (howMany <= props.newsCards.length)) ?
        showMoreButton : ''
       }
 
