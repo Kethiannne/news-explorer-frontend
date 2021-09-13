@@ -30,14 +30,18 @@ class MainApi {
     }
   }
 
-  createArticle(jwt, {
-    keyword, title, text, date, source, link, image
-  }) {
+  createArticle(jwt, obj) {
+    console.log(jwt, obj)
+    const { keyword, title, description, publishedAt, source, url, urlToImage } = obj;
+    const src = source.name;
+    console.log({
+      keyword, title, description, publishedAt, src, url, urlToImage
+    })
     return fetch(this._baseURL + `/articles`, {
       headers: this._setJwtHeaders(jwt),
       method: "POST",
       body: JSON.stringify({
-        keyword, title, text, date, source, link, image
+        keyword, title, description, publishedAt, src, url, urlToImage
       })
     })
       .then(res => {

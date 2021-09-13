@@ -16,15 +16,28 @@ export default function NewsCardList(props) {
     </h2>
   );
 
+  let key = 0;
+  function assignKeys () {
+    key = key + 1;
+    return key;
+  }
+
   const cardList = (
     <ul className='news-card-list__container'>
       { (props.page === 'main' ? props.newsCards.slice(0, howMany) : props.newsCards).map((newsCard) =>
         {
+
+          function assignKeyword() {
+            return props.page === 'main' ? props.keyword: newsCard.keyword
+          }
+
           return (
             <NewsCard
-              key= { newsCard._id }
+              key={ assignKeys() }
               {...newsCard }
               isLoggedIn={ props.isLoggedIn }
+              openLogin={ props.openLogin }
+              keyword={ assignKeyword() }
               page={ props.page }
               newsCardSave={props.newsCardSave}
               newsCardDelete={props.newsCardDelete}

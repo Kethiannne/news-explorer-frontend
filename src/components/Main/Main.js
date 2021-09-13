@@ -35,14 +35,18 @@ export default function Main (props) {
           onSubmit={ props.searchSubmit }
         />
       </div>
+      {props.searched === true ?
       <NewsCardsList
         isLoggedIn={ props.isLoggedIn }
         loading={ props.loading }
         results={ props.results }
         newsCards={ props.newsCards }
+        keyword={ props.keyword }
+        openLogin={ props.openLogin }
         page={ 'main' }
         newsCardSave={props.newsCardSave}
-      />
+      />: ''}
+
       <About/>
     </main>
   )

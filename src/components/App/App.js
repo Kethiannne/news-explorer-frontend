@@ -3,7 +3,6 @@ import React from 'react'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 // Utility Imports
-import api from '../../utils/mainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute';
 import { authorize, checkToken, register } from '../../utils/auth';
@@ -25,6 +24,7 @@ import Footer from '../Footer/Footer';
 
 // Apis
 import MainApi from '../../utils/mainApi'
+import NewsApi from '../../utils/newsApi';
 
 
 function App(props) {
@@ -40,10 +40,12 @@ function App(props) {
     const [isToolTipOpen, setIsToolTipOpen] = React.useState(false);
     const [isNavMenuOpen, setIsNavMenuOpen] = React.useState(false);
 
-    // these will have more use when the apis are connected
+    const [searched, setSearched] = React.useState(false);
+    const [keyword, setKeyword] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [results, setResults] = React.useState(true);
-    const [newsCards, setNewsCards] = React.useState(defaultCardList);
+    const [newsCards, setNewsCards] = React.useState([]);
+    const [userArticles, setUserArticles] = React.useState([]);
 
     const history = props.history;
   //-----------------------------------------------------------------
@@ -119,21 +121,20 @@ function App(props) {
     function registerUser(email, password, name) {
       register(email, password, name)
         .then((res)=>{
-          console.log(res);
           closeAllPopups();
           handleToolTipOpen();
         })
         .catch(err => {
 
           // rekerjig this to make sure the proper error message is displayed in the form?
-
+          console.log(err);
           console.log((`Register Function Broken: ${ err }`))
         })
     }
 
   // A Call for Initial User Info
     React.useEffect(()=>{
-      api.getUserInfo(jwt)
+      MainApi.getUserInfo(jwt)
         .then((res) => {
           setCurrentUser(res);
         })
@@ -151,19 +152,58 @@ function App(props) {
       }
 
     // Searching for News
-    // api calls not fully implemented yet
-      function searchSubmit(keyword) {
-        // this will search for news
+      function searchSubmit(query) {
+        setSearched(true);
+        setLoading(true);
+        setResults(true);
+        setKeyword(query);
+
+        NewsApi.getArticles(query)
+          .then((res) => {
+            if(res.articles.length === 0) { setResults(false) }
+            console.log(res.articles);
+            setLoading(false);
+            setNewsCards(res.articles);
+          })
+          .catch((err) => {
+            setResults(false);
+            setLoading(false);
+            console.log((`Card Search Function Broken: ${ err }`))
+          })
       }
 
+    // A Call for Initial Cards
+      React.useEffect(() => {
+        MainApi.getUserArticles(jwt)
+          .then((res) => {
+            console.log(res)
+            setUserArticles(res.checkedArticles);
+          })
+          .catch(err => {
+            console.log((`Articles could not be delivered as dialed: ${ err }`))
+          })
+      }, [jwt])
+
     // Saving and Deleting News Cards
-    // api calls not fully implemented yet
     function newsCardDelete(id) {
-      MainApi.deleteArticle(jwt, id);
+      MainApi.deleteArticle(jwt, id)
+      .then(() => {
+        setUserArticles((cards) => cards.filter(card => card._id !== id))
+      })
+      .catch(err => {
+        console.log((`Article Refuses to Leave Peacefully: ${ err }`))
+      })
     }
 
     function newsCardSave(obj) {
-      MainApi.createArticle(obj);
+      console.log(obj);
+      MainApi.createArticle(jwt, obj)
+      .then((res)=>{
+        console.log('success', res)
+      })
+      .catch(err=>{
+        console.log('Article Save Method Broken',err)
+      })
     }
 
    if (!doneChecking) {return <div></div>}
@@ -181,9 +221,11 @@ function App(props) {
               searchSubmit={ searchSubmit }
               openLogin={ handleLoginOpen }
               handleLogout={ handleLogout }
+              searched={ searched }
               loading={ loading }
               results={ results }
               newsCards={ newsCards }
+              keyword={ keyword }
               newsCardSave={ newsCardSave }
             />
           </Route>
@@ -198,7 +240,8 @@ function App(props) {
             handleLogout={ handleLogout }
             loading={ loading }
             results={ results }
-            newsCards={ newsCards }
+            newsCards={ userArticles }
+            keyword={ keyword }
             newsCardDelete={ newsCardDelete }
           />
 

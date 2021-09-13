@@ -1,55 +1,39 @@
 import React from 'react';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { keywords, savedArticles } from '../../utils/constants';
 
 export default function NewsCard(props) {
-
-  const currentUser = React.useContext(CurrentUserContext);
+  const [saved, setSaved] = React.useState(false)
   const isLoggedIn = props.isLoggedIn;
-
-  // returns false if there is no current user or if the card owner doesnt match the card id
-  const isSaved = function (){
-    if (currentUser._id) {
-      return props.owner._id === currentUser._id
-    }
-    return false
-  };
-
-  // Function for determining the util button's css
-  function newsCardUtilButton() {
-    return `news-card__util ${ (props.page === 'main') ?
-      ((isSaved() === true) ? `news-card__saved` : `news-card__save` ) :
-      `news-card__delete`}`
-
-  };
-
   //functions for adding onto a list of keywords and number of saved cards
   function savedIndexing(arr, item){
-    if (isSaved() === true && (arr.indexOf(item) === -1)) {
+    if ((arr.indexOf(item) === -1)) {
       return arr.push(`${item}`)
     }
   }
   function keywordIndexing(arr, item){
-    if (isSaved() === true) {
+
       return arr.push(` ${item}`)
-    }
+
   }
 
   savedIndexing(savedArticles, props._id);
   keywordIndexing(keywords, props.keyword);
 
   function handleSave() {
+    setSaved(true);
     props.newsCardSave(props);
+    console.log('hello',props.newsCardSave(props));
   }
 
   function handleDelete() {
-    props.newsCardDelete(props._id)
+    setSaved(false);
+    props.newsCardDelete(props._id);
   }
 
   return (
     <li className="news-card">
       <div className="news-card__image"
-        style={{ backgroundImage: `url(${props.image})` }}
+        style={{ backgroundImage: `url(${props.urlToImage})` }}
       >
           <div className={`news-card__toolTip ${props.page === 'main' ? `news-card__keyword`: ``}`}>
           <p className='news-card__tooltip-text'>
@@ -59,7 +43,14 @@ export default function NewsCard(props) {
 
         <div className='news-card__util-container'>
           <button
-            className= {`${ newsCardUtilButton() } ${ isLoggedIn ? `` : `news-card__toolTip_hover` }`}
+            className= {
+              `news-card__util
+              ${ (props.page === 'main') ?
+              (saved === true ? `news-card__saved`: 'news-card__save') :
+              `news-card__delete`}
+              ${ isLoggedIn ? `` : `news-card__toolTip_hover` }
+              `
+            }
 
             // Handles what the button does under different conditions.
             // allows it to be both the save and delete button,
@@ -67,8 +58,9 @@ export default function NewsCard(props) {
             onClick={
               function () {
                 if (isLoggedIn) {
-                  return isSaved() ? handleDelete() : handleSave()
+                  return (props.page === 'main') ? handleSave() : handleDelete()
                 }
+                props.openLogin();
             }}
 
             aria-label="Delete"
@@ -85,7 +77,7 @@ export default function NewsCard(props) {
       </div>
       <article className="news-card__article">
         <p className='news-card__date'>
-          { props.date }
+          { new Date(props.publishedAt).toDateString() }
         </p>
 
         <h2 className="news-card__title">
@@ -93,11 +85,11 @@ export default function NewsCard(props) {
         </h2>
 
         <p className=' line-clamp news-card__text'>
-          { props.text }
+          { props.description }
         </p>
 
         <p className='news-card__source'>
-          { props.source }
+          { props.page === 'main' ? props.source.name : props.src }
         </p>
       </article>
     </li>
