@@ -1,12 +1,11 @@
 // React Imports
 import React from 'react'
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 // Utility Imports
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute';
 import { authorize, checkToken, register } from '../../utils/auth';
-import { defaultCardList } from '../../utils/constants'
 
 // Main Page Imports
 import Main from '../Main/Main';
@@ -46,8 +45,9 @@ function App(props) {
     const [results, setResults] = React.useState(true);
     const [newsCards, setNewsCards] = React.useState([]);
     const [userArticles, setUserArticles] = React.useState([]);
+    const [savedArticles, setSavedArticles] = React.useState({});
 
-    const history = props.history;
+    //const history = props.history;
   //-----------------------------------------------------------------
 
   // A Section for Opening and Closing Popups
@@ -142,7 +142,7 @@ function App(props) {
         })
     }, [jwt])
 
-    //Logging a User Out
+    // Logging a User Out
       function handleLogout(){
         setLoggedIn(false);
         setJwt('');
@@ -170,40 +170,69 @@ function App(props) {
           })
       }
 
+    // A Handler for Saved Articles
+    function savedIndexing(url, id){
+      console.log('util', url, id, savedArticles.hasOwnProperty(url))
+      if (!savedArticles.hasOwnProperty(url) && id !== undefined) {
+        const newSavedArticles = savedArticles;
+        newSavedArticles[url] = id;
+        return setSavedArticles(newSavedArticles);
+      }
+    }
+
     // A Call for Initial Cards
       React.useEffect(() => {
         MainApi.getUserArticles(jwt)
           .then((res) => {
             setUserArticles(res.checkedArticles);
+            res.checkedArticles.forEach(article => {
+              savedIndexing(article.url, article._id);
+            } );
           })
+          // .then(()=> {
+          //   userArticles.
+          // })
           .catch(err => {
             console.log((`Articles could not be delivered as dialed: ${ err }`))
           })
       }, [jwt])
 
     // Saving and Deleting News Cards
-    function newsCardDelete(id) {
+    function newsCardDelete(url) {
+      const id = savedArticles[url];
       MainApi.deleteArticle(jwt, id)
+
       .then(() => {
-        setUserArticles((cards) => cards.filter(card => card._id !== id))
+        // Removes the Deleted Article from savedArticles
+        const newSavedArticles = savedArticles;
+        delete newSavedArticles[url]
+        setSavedArticles(newSavedArticles);
+
+        // Removes the Deleted Article from userArticles
+        setUserArticles((articles) => articles.filter(article => article._id !== id));
       })
       .catch(err => {
         console.log((`Article Refuses to Leave Peacefully: ${ err }`))
       })
     }
 
-    function newsCardSave(obj) {
-      MainApi.createArticle(jwt, obj)
+    function newsCardSave(article) {
+      MainApi.createArticle(jwt, article)
       .then((res)=>{
-        articleIdSetter(res.article._id);
+        return res
+      })
+      .then(res=>{
+        // Adds new Article to savedArticles
+        savedIndexing(res.article.url, res.article._id);
+
+        // Adds new Article to userArticles
+        const newUserArticles = userArticles.slice();
+        newUserArticles.push(res.article);
+        setUserArticles(newUserArticles);
       })
       .catch(err=>{
         console.log('Article Save Method Broken',err)
       })
-    }
-
-    function articleIdSetter(id) {
-      console.log(id, 'setter')
     }
 
    if (!doneChecking) {return <div></div>}
@@ -226,7 +255,10 @@ function App(props) {
               results={ results }
               newsCards={ newsCards }
               keyword={ keyword }
+              savedArticles={ savedArticles }
+              setSavedArticles={ setSavedArticles }
               newsCardSave={ newsCardSave }
+              newsCardDelete={ newsCardDelete }
             />
           </Route>
 
@@ -242,6 +274,8 @@ function App(props) {
             results={ results }
             newsCards={ userArticles }
             keyword={ keyword }
+            savedArticles={ savedArticles }
+            setSavedArticles={ setSavedArticles }
             newsCardDelete={ newsCardDelete }
           />
 

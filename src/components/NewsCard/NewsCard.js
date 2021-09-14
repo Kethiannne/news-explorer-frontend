@@ -1,34 +1,27 @@
 import React from 'react';
-import { keywords, savedArticles } from '../../utils/constants';
 
 export default function NewsCard(props) {
-  const [saved, setSaved] = React.useState(false)
   const isLoggedIn = props.isLoggedIn;
 
-  //functions for adding onto a list of keywords and number of saved cards
-  function savedIndexing(arr, item){
-    if ((arr.indexOf(item) === -1)) {
-      return arr.push(`${item}`)
+  // Function had to be duplicated here to avoid error where one component is not allowed to alter another one
+  function savedIndexing(url, id){
+    if (!props.savedArticles.hasOwnProperty(url) && id !== undefined) {
+      return props.setSavedArticles({...props.savedArticles, [url]: id});
     }
   }
 
-  function keywordIndexing(arr, item){
-
-      return arr.push(` ${item}`)
-
-  }
-
-  savedIndexing(savedArticles, props._id);
-  keywordIndexing(keywords, props.keyword);
+  // If we're on the saved-news page this tries to add the cards to our saved cards list
+  React.useEffect(()=>{
+    return props.page === 'main' ? '' : savedIndexing(props.url, props._id)
+  },[])
 
   function handleSave() {
-    setSaved(true);
     props.newsCardSave(props);
   }
 
-  function handleDelete() {
-    setSaved(false);
-    props.newsCardDelete(props._id);
+  function handleDelete(url) {
+    console.log(url);
+    props.newsCardDelete(url);
   }
 
   return (
@@ -52,7 +45,7 @@ export default function NewsCard(props) {
             className= {
               `news-card__util
               ${ (props.page === 'main') ?
-              (saved === true ? `news-card__saved`: 'news-card__save') :
+              (props.savedArticles.hasOwnProperty(props.url) === true ? `news-card__saved`: 'news-card__save') :
               `news-card__delete`}
               ${ isLoggedIn ? `` : `news-card__toolTip_hover` }
               `
@@ -64,7 +57,9 @@ export default function NewsCard(props) {
             onClick={
               function () {
                 if (isLoggedIn) {
-                  return (props.page === 'main') ? handleSave() : handleDelete()
+                  return (props.page === 'main' && (props.savedArticles.hasOwnProperty(props.url) === false)) ?
+                  handleSave() :
+                  handleDelete(props.url)
                 }
                 props.openLogin();
             }}

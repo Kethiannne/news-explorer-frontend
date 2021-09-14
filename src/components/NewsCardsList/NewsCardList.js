@@ -39,6 +39,8 @@ export default function NewsCardList(props) {
               openLogin={ props.openLogin }
               keyword={ assignKeyword() }
               page={ props.page }
+              savedArticles={ props.savedArticles }
+              setSavedArticles={ props.setSavedArticles }
               newsCardSave={props.newsCardSave}
               newsCardDelete={props.newsCardDelete}
             />)

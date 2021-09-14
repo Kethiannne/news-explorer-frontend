@@ -125,6 +125,3 @@ export const defaultCardList = [
     }
   },
 ]
-
-export const keywords = [];
-export const savedArticles = [];

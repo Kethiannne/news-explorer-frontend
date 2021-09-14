@@ -44,7 +44,10 @@ export default function Main (props) {
         keyword={ props.keyword }
         openLogin={ props.openLogin }
         page={ 'main' }
+        savedArticles={ props.savedArticles }
+        setSavedArticles={ props.setSavedArticles }
         newsCardSave={props.newsCardSave}
+        newsCardDelete={ props.newsCardDelete }
       />: ''}
 
       <About/>
