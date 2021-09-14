@@ -86,7 +86,6 @@ function App(props) {
         setJwt(token);
         checkToken(token)
           .then(data => {
-            console.log(data)
             setLoggedIn(true);
           })
           .then(()=>{
@@ -161,7 +160,6 @@ function App(props) {
         NewsApi.getArticles(query)
           .then((res) => {
             if(res.articles.length === 0) { setResults(false) }
-            console.log(res.articles);
             setLoading(false);
             setNewsCards(res.articles);
           })
@@ -176,7 +174,6 @@ function App(props) {
       React.useEffect(() => {
         MainApi.getUserArticles(jwt)
           .then((res) => {
-            console.log(res)
             setUserArticles(res.checkedArticles);
           })
           .catch(err => {
@@ -196,14 +193,17 @@ function App(props) {
     }
 
     function newsCardSave(obj) {
-      console.log(obj);
       MainApi.createArticle(jwt, obj)
       .then((res)=>{
-        console.log('success', res)
+        articleIdSetter(res.article._id);
       })
       .catch(err=>{
         console.log('Article Save Method Broken',err)
       })
+    }
+
+    function articleIdSetter(id) {
+      console.log(id, 'setter')
     }
 
    if (!doneChecking) {return <div></div>}

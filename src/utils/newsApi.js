@@ -43,7 +43,6 @@ class NewsApi {
   getArticles(query){
     return fetch(this._baseURL + `/everything?q=${query}&from=${this._getFromDate}&to=${this._getToDate}&apiKey=${this._bearer}&pageSize=100`)
       .then(res => {
-        console.log(res)
         return this._getSuccessfulReturn(res);
       })
   }

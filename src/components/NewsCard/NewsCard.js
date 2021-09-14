@@ -4,12 +4,14 @@ import { keywords, savedArticles } from '../../utils/constants';
 export default function NewsCard(props) {
   const [saved, setSaved] = React.useState(false)
   const isLoggedIn = props.isLoggedIn;
+
   //functions for adding onto a list of keywords and number of saved cards
   function savedIndexing(arr, item){
     if ((arr.indexOf(item) === -1)) {
       return arr.push(`${item}`)
     }
   }
+
   function keywordIndexing(arr, item){
 
       return arr.push(` ${item}`)
@@ -22,7 +24,6 @@ export default function NewsCard(props) {
   function handleSave() {
     setSaved(true);
     props.newsCardSave(props);
-    console.log('hello',props.newsCardSave(props));
   }
 
   function handleDelete() {
@@ -34,6 +35,11 @@ export default function NewsCard(props) {
     <li className="news-card">
       <div className="news-card__image"
         style={{ backgroundImage: `url(${props.urlToImage})` }}
+        onClick={(evt)=>{
+          if (evt.target === evt.currentTarget){
+            window.open({pathname: props.src})
+          }
+        }}
       >
           <div className={`news-card__toolTip ${props.page === 'main' ? `news-card__keyword`: ``}`}>
           <p className='news-card__tooltip-text'>

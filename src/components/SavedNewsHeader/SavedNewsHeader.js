@@ -5,7 +5,6 @@ import { keywords, savedArticles } from '../../utils/constants'
 
 export default function SavedNewsHeader (props) {
   const currentUser = React.useContext(CurrentUserContext);
-
   return (
     <div className='saved-news-header'>
       <Header

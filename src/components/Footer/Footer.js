@@ -16,7 +16,7 @@ export default function Footer (props) {
             Home
           </Link>
           <Link
-            to='https://practicum.yandex.com'
+            to={ { pathname: 'https://practicum.yandex.com' } }
             target="_blank"
             className='footer__link button-hover'
           >

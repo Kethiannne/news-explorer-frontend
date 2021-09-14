@@ -126,5 +126,5 @@ export const defaultCardList = [
   },
 ]
 
-export const keywords = [' cats', ' dogs'];
+export const keywords = [];
 export const savedArticles = [];

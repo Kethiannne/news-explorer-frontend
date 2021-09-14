@@ -31,12 +31,8 @@ class MainApi {
   }
 
   createArticle(jwt, obj) {
-    console.log(jwt, obj)
     const { keyword, title, description, publishedAt, source, url, urlToImage } = obj;
     const src = source.name;
-    console.log({
-      keyword, title, description, publishedAt, src, url, urlToImage
-    })
     return fetch(this._baseURL + `/articles`, {
       headers: this._setJwtHeaders(jwt),
       method: "POST",

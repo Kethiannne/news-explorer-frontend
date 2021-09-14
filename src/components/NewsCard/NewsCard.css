@@ -43,6 +43,7 @@
   align-items: center;
   padding: 0 20px;
   margin: 24px 0 0 24px;
+  cursor: default;
 }
 
 .news-card__tooltip-text {
@@ -56,6 +57,7 @@
 .news-card__popIn {
   opacity: 0;
   transition: opacity .5s linear .1s;
+  pointer-events: none;
 }
 
 .news-card__util {
