@@ -18,7 +18,6 @@ function getSuccessfulReturn(res){
       body: JSON.stringify({email, password, name})
     })
     .then((res) => {
-      console.log(res);
       return getSuccessfulReturn(res);
     })
     .then((res) => {

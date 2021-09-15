@@ -115,6 +115,7 @@ export default function SignupPopup (props) {
       openForm={ props.openLogin }
       linkText=' Sign in'
       formValid={ formValid }
+      didSucceed={ props.didSucceed }
     >
     {/* Children Elements */}
     <p className='form__input-title'>Email</p>

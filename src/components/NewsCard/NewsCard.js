@@ -20,7 +20,6 @@ export default function NewsCard(props) {
   }
 
   function handleDelete(url) {
-    console.log(url);
     props.newsCardDelete(url);
   }
 

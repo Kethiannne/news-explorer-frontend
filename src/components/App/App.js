@@ -39,6 +39,11 @@ function App(props) {
     const [isToolTipOpen, setIsToolTipOpen] = React.useState(false);
     const [isNavMenuOpen, setIsNavMenuOpen] = React.useState(false);
 
+    const [signupDidSucceed, setSignupDidSucceed] = React.useState(true);
+    const [loginDidSucceed, setLoginDidSucceed] = React.useState(true);
+    const [searchDidSucceed, setSearchDidSucceed] = React.useState(true);
+
+
     const [searched, setSearched] = React.useState(false);
     const [keyword, setKeyword] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
@@ -57,6 +62,9 @@ function App(props) {
       setIsSignupOpen(false);
       setIsToolTipOpen(false);
       setIsNavMenuOpen(false);
+
+      setLoginDidSucceed(true);
+      setSignupDidSucceed(true);
     }
 
     function handleLoginOpen() {
@@ -109,10 +117,12 @@ function App(props) {
         .then(() => {
           setLoggedIn(true);
           closeAllPopups();
+          setLoginDidSucceed(true);
         })
         .catch(err => {
-          setLoggedIn(false)
-          console.log((`Login Function Broken: ${ err }`))
+          setLoggedIn(false);
+          setLoginDidSucceed(false);
+          console.log((`Login Function Broken: ${ err }`));
         })
     }
 
@@ -122,12 +132,11 @@ function App(props) {
         .then((res)=>{
           closeAllPopups();
           handleToolTipOpen();
+          setSignupDidSucceed(true);
         })
         .catch(err => {
-
-          // rekerjig this to make sure the proper error message is displayed in the form?
-          console.log(err);
-          console.log((`Register Function Broken: ${ err }`))
+          setSignupDidSucceed(false);
+          console.log((`Register Function Broken: ${ err.message }`))
         })
     }
 
@@ -161,18 +170,19 @@ function App(props) {
           .then((res) => {
             if(res.articles.length === 0) { setResults(false) }
             setLoading(false);
+            setSearchDidSucceed(true)
             setNewsCards(res.articles);
           })
           .catch((err) => {
             setResults(false);
             setLoading(false);
+            !err ? setSearchDidSucceed(true): setSearchDidSucceed(false) ;
             console.log((`Card Search Function Broken: ${ err }`))
           })
       }
 
     // A Handler for Saved Articles
     function savedIndexing(url, id){
-      console.log('util', url, id, savedArticles.hasOwnProperty(url))
       if (!savedArticles.hasOwnProperty(url) && id !== undefined) {
         const newSavedArticles = savedArticles;
         newSavedArticles[url] = id;
@@ -189,9 +199,6 @@ function App(props) {
               savedIndexing(article.url, article._id);
             } );
           })
-          // .then(()=> {
-          //   userArticles.
-          // })
           .catch(err => {
             console.log((`Articles could not be delivered as dialed: ${ err }`))
           })
@@ -259,6 +266,7 @@ function App(props) {
               setSavedArticles={ setSavedArticles }
               newsCardSave={ newsCardSave }
               newsCardDelete={ newsCardDelete }
+              didSucceed={ searchDidSucceed }
             />
           </Route>
 
@@ -300,6 +308,7 @@ function App(props) {
           isOpen={ isSignupOpen }
           registerUser={ registerUser }
           openLogin={ handleLoginOpen }
+          didSucceed={ signupDidSucceed }
         />
         <SignupToolTip
           onClose={ closeAllPopups }
@@ -312,6 +321,7 @@ function App(props) {
           setLoggedIn={ setLoggedIn }
           login={ loginAuthorize }
           openSignup={ handleSignupOpen }
+          didSucceed={ loginDidSucceed }
         />
 
       </div>

@@ -40,6 +40,7 @@ export default function Main (props) {
         isLoggedIn={ props.isLoggedIn }
         loading={ props.loading }
         results={ props.results }
+        didSucceed={ props.didSucceed }
         newsCards={ props.newsCards }
         keyword={ props.keyword }
         openLogin={ props.openLogin }

@@ -60,7 +60,13 @@ export default function NewsCardList(props) {
         searchResults : ''
       }
 
-      {(props.loading === false && props.results === true) ? cardList : <NoCards loading={ props.loading } results={ props.results }/>}
+      {(props.loading === false && props.results === true) ?
+        cardList :
+        <NoCards
+          loading={ props.loading }
+          results={ props.results }
+          didSucceed={ props.didSucceed }
+        />}
 
       {((props.loading === false) &&
         (props.results === true) &&
