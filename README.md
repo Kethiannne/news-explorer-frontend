@@ -1,3 +1,5 @@
+# KethNews Explorer
+
 ### Intro
 
 News Explorer Frontend project on React, featuring authorization and registration.
