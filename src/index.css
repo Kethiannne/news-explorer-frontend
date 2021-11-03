@@ -18,6 +18,7 @@
 @import url(./components/Header/Header.css);
 @import url(./components/NavMenu/NavMenu.css);
 @import url(./components/PopupWithForm/form.css);
+@import url(./components/SignupToolTip/SignupToolTip.css);
 
 /* General CSS Rules */
 .black-text {

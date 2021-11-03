@@ -30,14 +30,14 @@ class MainApi {
     }
   }
 
-  createArticle(jwt, {
-    keyword, title, text, date, source, link, image
-  }) {
+  createArticle(jwt, obj) {
+    const { keyword, title, description, publishedAt, source, url, urlToImage } = obj;
+    const src = source.name;
     return fetch(this._baseURL + `/articles`, {
       headers: this._setJwtHeaders(jwt),
       method: "POST",
       body: JSON.stringify({
-        keyword, title, text, date, source, link, image
+        keyword, title, description, publishedAt, src, url, urlToImage
       })
     })
       .then(res => {
@@ -76,5 +76,5 @@ class MainApi {
 }
 
 export default new MainApi({
-  baseURL: process.env.NODE_ENV === "production" ? 'https://api.kethnews.students.nomoreparties.site' : 'http://localhost:3000',
+  baseURL: 'https://kethnews.students.nomoreparties.site',
 });

@@ -16,16 +16,31 @@ export default function NewsCardList(props) {
     </h2>
   );
 
+  let key = 0;
+  function assignKeys () {
+    key = key + 1;
+    return key;
+  }
+
   const cardList = (
     <ul className='news-card-list__container'>
       { (props.page === 'main' ? props.newsCards.slice(0, howMany) : props.newsCards).map((newsCard) =>
         {
+
+          function assignKeyword() {
+            return props.page === 'main' ? props.keyword: newsCard.keyword
+          }
+
           return (
             <NewsCard
-              key= { newsCard._id }
+              key={ assignKeys() }
               {...newsCard }
               isLoggedIn={ props.isLoggedIn }
+              openLogin={ props.openLogin }
+              keyword={ assignKeyword() }
               page={ props.page }
+              savedArticles={ props.savedArticles }
+              setSavedArticles={ props.setSavedArticles }
               newsCardSave={props.newsCardSave}
               newsCardDelete={props.newsCardDelete}
             />)
@@ -45,9 +60,18 @@ export default function NewsCardList(props) {
         searchResults : ''
       }
 
-      {(props.loading === false && props.results === true) ? cardList : <NoCards loading={ props.loading } results={ props.results }/>}
+      {(props.loading === false && props.results === true) ?
+        cardList :
+        <NoCards
+          loading={ props.loading }
+          results={ props.results }
+          didSucceed={ props.didSucceed }
+        />}
 
-      {((props.loading === false) && (props.results === true) && (props.page === 'main')) ?
+      {((props.loading === false) &&
+        (props.results === true) &&
+        (props.page === 'main') &&
+        (howMany <= props.newsCards.length)) ?
        showMoreButton : ''
       }
 

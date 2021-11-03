@@ -7,6 +7,11 @@ export default function SearchForm (props) {
     setKeyword(evt.target.value);
   }
 
+  function handleSubmit (evt) {
+    evt.preventDefault();
+    props.onSubmit(keyword);
+  }
+
   return (
     <div className='search-form'>
       <h1 className='search-form__title'>
@@ -17,7 +22,7 @@ export default function SearchForm (props) {
         Find the latest news on any topic and save them in your personal account.
       </p>
 
-      <form className='search-form__form' name='search-form' onSubmit={ props.onSubmit }>
+      <form className='search-form__form' name='search-form' onSubmit={ handleSubmit }>
         <input name="keyword" value={ keyword } onChange={ handleChange } type="text" required
         className="search-form__field" placeholder="Enter topic" minLength={ 2 } maxLength={ 40 } />
 

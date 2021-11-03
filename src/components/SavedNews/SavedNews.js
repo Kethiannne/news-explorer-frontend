@@ -13,12 +13,15 @@ export default function SavedNews (props) {
         isNavMenuOpen={ props.isNavMenuOpen }
         handleLogout={ props.handleLogout }
         page={ 'savedNews' }
+        newsCards={ props.newsCards }
       />
       <NewsCardsList
         isLoggedIn={ props.isLoggedIn }
         loading={ props.loading }
         results={ props.results }
         newsCards={ props.newsCards }
+        savedArticles={ props.savedArticles }
+        setSavedArticles={ props.setSavedArticles }
         page={ 'savedNews' }
         newsCardDelete={props.newsCardDelete}
       />

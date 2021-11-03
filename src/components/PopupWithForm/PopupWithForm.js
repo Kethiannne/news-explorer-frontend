@@ -32,7 +32,16 @@ export default function PopupWithForm (props) {
           {props.children}
 
           {/* form error to be given more purpose with validation when project is hooked up to our api in stage-3*/}
-          <p className='form__input-title form__error_save'>This username is not available</p>
+          <p className='form__input-title form__error_save'>
+            {
+              props.didSucceed ?
+              '' :
+              (props.title === 'Sign up' ?
+              'The requested username or email is not available' :
+              'The provided email or password is incorrect'
+              )
+            }
+          </p>
 
           <button type='submit' className={`form__save-button  ${props.formValid === true ? `button-hover` : `form__save-button_disabled`}`} >
             {props.saveText}

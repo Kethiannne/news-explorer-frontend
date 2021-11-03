@@ -1,13 +1,11 @@
 // React Imports
 import React from 'react'
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 // Utility Imports
-import api from '../../utils/mainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-// import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute';
 import { authorize, checkToken, register } from '../../utils/auth';
-import { defaultCardList } from '../../utils/constants'
 
 // Main Page Imports
 import Main from '../Main/Main';
@@ -22,18 +20,16 @@ import NavMenu from '../NavMenu/NavMenu'
 // Footer Import
 import Footer from '../Footer/Footer';
 
-// Preloader
-// implement preloader import here
 
 // Apis
 import MainApi from '../../utils/mainApi'
-import Navigation from '../Navigation/Navigation';
+import NewsApi from '../../utils/newsApi';
 
 
 function App(props) {
   // A Section For States
   //-----------------------------------------------------------------
-    const [loggedIn, setLoggedIn] = React.useState(false)
+    const [loggedIn, setLoggedIn] = React.useState(false);
     const [jwt, setJwt] = React.useState('');
     const [doneChecking, setDoneChecking] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
@@ -43,15 +39,21 @@ function App(props) {
     const [isToolTipOpen, setIsToolTipOpen] = React.useState(false);
     const [isNavMenuOpen, setIsNavMenuOpen] = React.useState(false);
 
-    // these will have more use when the apis are connected
+    const [signupDidSucceed, setSignupDidSucceed] = React.useState(true);
+    const [loginDidSucceed, setLoginDidSucceed] = React.useState(true);
+    const [searchDidSucceed, setSearchDidSucceed] = React.useState(true);
+
+
+    const [searched, setSearched] = React.useState(false);
+    const [keyword, setKeyword] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [results, setResults] = React.useState(true);
-    const [newsCards, setNewsCards] = React.useState(defaultCardList);
+    const [newsCards, setNewsCards] = React.useState([]);
+    const [userArticles, setUserArticles] = React.useState([]);
+    const [savedArticles, setSavedArticles] = React.useState({});
 
-    const history = props.history;
+    //const history = props.history;
   //-----------------------------------------------------------------
-
-
 
   // A Section for Opening and Closing Popups
   //-----------------------------------------------------------------
@@ -60,6 +62,9 @@ function App(props) {
       setIsSignupOpen(false);
       setIsToolTipOpen(false);
       setIsNavMenuOpen(false);
+
+      setLoginDidSucceed(true);
+      setSignupDidSucceed(true);
     }
 
     function handleLoginOpen() {
@@ -73,6 +78,7 @@ function App(props) {
     function handleToolTipOpen() {
       setIsToolTipOpen(true);
     }
+
     function handleNavMenuOpen() {
       setIsNavMenuOpen(true);
     }
@@ -82,60 +88,61 @@ function App(props) {
   //-----------------------------------------------------------------
 
   // A Call for Checking User Token
-    // React.useEffect(()=> {
-    //   if (localStorage.getItem('jwt')) {
-    //     const token = localStorage.getItem('jwt');
-    //     setJwt(token);
-    //     checkToken(token)
-    //       .then(data => {
-    //         setLoggedIn(true);
-    //         history.push('/');
-    //       })
-    //       .then(()=>{
-    //         setDoneChecking(true);
-    //       })
-    //       .catch(err => {
-    //         console.log((`jwt checker broken: ${ err }`))
-    //       })
-    //   } else {
-    //     console.log('no jwt found');
-    //     setDoneChecking(true);
-    //   }
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [loggedIn])
+    React.useEffect(()=> {
+      if (localStorage.getItem('jwt')) {
+        const token = localStorage.getItem('jwt');
+        setJwt(token);
+        checkToken(token)
+          .then(data => {
+            setLoggedIn(true);
+          })
+          .then(()=>{
+            setDoneChecking(true);
+          })
+          .catch(err => {
+            setDoneChecking(true);
+
+            console.log((`jwt checker broken: ${ err }`))
+          })
+      } else {
+        console.log('no jwt found');
+        setDoneChecking(true);
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loggedIn])
 
   // A Call For Logging a User in
     function loginAuthorize(email, password) {
       authorize(email, password)
         .then(() => {
           setLoggedIn(true);
-        })
-        .then(() => {
-          history.push('/');
+          closeAllPopups();
+          setLoginDidSucceed(true);
         })
         .catch(err => {
-          setLoggedIn(false)
-          console.log((`Login Function Broken: ${ err }`))
+          setLoggedIn(false);
+          setLoginDidSucceed(false);
+          console.log((`Login Function Broken: ${ err }`));
         })
     }
 
   // A Call for Registering the user
     function registerUser(email, password, name) {
       register(email, password, name)
-        .then(()=>{
+        .then((res)=>{
+          closeAllPopups();
           handleToolTipOpen();
+          setSignupDidSucceed(true);
         })
         .catch(err => {
-
-          // rekerjig this to make sure the proper error message is displayed in the form?
-
-          console.log((`Register Function Broken: ${ err }`))
+          setSignupDidSucceed(false);
+          console.log((`Register Function Broken: ${ err.message }`))
         })
     }
 
   // A Call for Initial User Info
     React.useEffect(()=>{
-      api.getUserInfo(jwt)
+      MainApi.getUserInfo(jwt)
         .then((res) => {
           setCurrentUser(res);
         })
@@ -144,7 +151,7 @@ function App(props) {
         })
     }, [jwt])
 
-    //Logging a User Out
+    // Logging a User Out
       function handleLogout(){
         setLoggedIn(false);
         setJwt('');
@@ -153,22 +160,89 @@ function App(props) {
       }
 
     // Searching for News
-    // api calls not fully implemented yet
-      function searchSubmit(keyword) {
-        // this will search for news
+      function searchSubmit(query) {
+        setSearched(true);
+        setLoading(true);
+        setResults(true);
+        setKeyword(query);
+
+        NewsApi.getArticles(query)
+          .then((res) => {
+            if(res.articles.length === 0) { setResults(false) }
+            setLoading(false);
+            setSearchDidSucceed(true)
+            setNewsCards(res.articles);
+          })
+          .catch((err) => {
+            setResults(false);
+            setLoading(false);
+            !err ? setSearchDidSucceed(true): setSearchDidSucceed(false) ;
+            console.log((`Card Search Function Broken: ${ err }`))
+          })
       }
 
+    // A Handler for Saved Articles
+    function savedIndexing(url, id){
+      if (!savedArticles.hasOwnProperty(url) && id !== undefined) {
+        const newSavedArticles = savedArticles;
+        newSavedArticles[url] = id;
+        return setSavedArticles(newSavedArticles);
+      }
+    }
+
+    // A Call for Initial Cards
+      React.useEffect(() => {
+        MainApi.getUserArticles(jwt)
+          .then((res) => {
+            setUserArticles(res.checkedArticles);
+            res.checkedArticles.forEach(article => {
+              savedIndexing(article.url, article._id);
+            } );
+          })
+          .catch(err => {
+            console.log((`Articles could not be delivered as dialed: ${ err }`))
+          })
+      }, [jwt])
+
     // Saving and Deleting News Cards
-    // api calls not fully implemented yet
-    function newsCardDelete(id) {
-      MainApi.deleteArticle(jwt, id);
+    function newsCardDelete(url) {
+      const id = savedArticles[url];
+      MainApi.deleteArticle(jwt, id)
+
+      .then(() => {
+        // Removes the Deleted Article from savedArticles
+        const newSavedArticles = savedArticles;
+        delete newSavedArticles[url]
+        setSavedArticles(newSavedArticles);
+
+        // Removes the Deleted Article from userArticles
+        setUserArticles((articles) => articles.filter(article => article._id !== id));
+      })
+      .catch(err => {
+        console.log((`Article Refuses to Leave Peacefully: ${ err }`))
+      })
     }
 
-    function newsCardSave(obj) {
-      MainApi.createArticle(obj);
+    function newsCardSave(article) {
+      MainApi.createArticle(jwt, article)
+      .then((res)=>{
+        return res
+      })
+      .then(res=>{
+        // Adds new Article to savedArticles
+        savedIndexing(res.article.url, res.article._id);
+
+        // Adds new Article to userArticles
+        const newUserArticles = userArticles.slice();
+        newUserArticles.push(res.article);
+        setUserArticles(newUserArticles);
+      })
+      .catch(err=>{
+        console.log('Article Save Method Broken',err)
+      })
     }
 
-  // if (!doneChecking) {return <div></div>}
+   if (!doneChecking) {return <div></div>}
   return (
     <CurrentUserContext.Provider value={ currentUser }>
       <div className="page__wrapper">
@@ -179,19 +253,24 @@ function App(props) {
             <Main
               isLoggedIn={ loggedIn }
               isNavMenuOpen={ isNavMenuOpen }
+              openNavMenu={ handleNavMenuOpen }
               searchSubmit={ searchSubmit }
               openLogin={ handleLoginOpen }
-              openNavMenu={ handleNavMenuOpen }
               handleLogout={ handleLogout }
+              searched={ searched }
               loading={ loading }
               results={ results }
               newsCards={ newsCards }
+              keyword={ keyword }
+              savedArticles={ savedArticles }
+              setSavedArticles={ setSavedArticles }
               newsCardSave={ newsCardSave }
+              newsCardDelete={ newsCardDelete }
+              didSucceed={ searchDidSucceed }
             />
           </Route>
 
           {/* User Saved Articles */}
-          {/* protected routing for later
           <ProtectedRoute path='/saved-news'
             component={ SavedNews }
             isLoggedIn={ loggedIn }
@@ -201,24 +280,12 @@ function App(props) {
             handleLogout={ handleLogout }
             loading={ loading }
             results={ results }
-            newsCards={ newsCards }
+            newsCards={ userArticles }
+            keyword={ keyword }
+            savedArticles={ savedArticles }
+            setSavedArticles={ setSavedArticles }
             newsCardDelete={ newsCardDelete }
           />
-          */}
-
-          <Route path='/saved-news'>
-            <SavedNews
-              isLoggedIn={ loggedIn }
-              isNavMenuOpen={ isNavMenuOpen }
-              openLogin={ handleLoginOpen }
-              openNavMenu={ handleNavMenuOpen }
-              handleLogout={ handleLogout }
-              loading={ loading }
-              results={ results }
-              newsCards={ newsCards }
-              newsCardDelete={ newsCardDelete }
-            />
-          </Route>
 
           {/* Global Redirect */}
           <Route path='/*'>
@@ -241,9 +308,11 @@ function App(props) {
           isOpen={ isSignupOpen }
           registerUser={ registerUser }
           openLogin={ handleLoginOpen }
+          didSucceed={ signupDidSucceed }
         />
         <SignupToolTip
           onClose={ closeAllPopups }
+          openLogin={ handleLoginOpen }
           isOpen={ isToolTipOpen }
         />
         <LoginPopup
@@ -252,6 +321,7 @@ function App(props) {
           setLoggedIn={ setLoggedIn }
           login={ loginAuthorize }
           openSignup={ handleSignupOpen }
+          didSucceed={ loginDidSucceed }
         />
 
       </div>
