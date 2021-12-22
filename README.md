@@ -36,7 +36,7 @@ https://kethianne-news.students.nomoreparties.site/
 
 ### Loom Demo
 
-https://cdn.loom.com/sessions/thumbnails/94454444d06f4d76a47e63b74dd4df6a-1634242832188.mp4#t=0.1
+https://www.loom.com/share/94454444d06f4d76a47e63b74dd4df6a
 
 ### Future Improvements
   - Adding a dark mode option to the site for night time viewing
