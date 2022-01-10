@@ -23,7 +23,7 @@ export default function Navigation (props) {
         <div
           className={
             `${ props.page === 'savedNews' ? `nav__link_underline-dark`: '' }
-            ${ props.isLoggedIn ? '': 'nav__noDisplay'}`
+             ${ props.isLoggedIn ? '': 'nav__noDisplay'}`
           }
         >
           <Link

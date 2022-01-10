@@ -31,7 +31,6 @@ export default function PopupWithForm (props) {
 
           {props.children}
 
-          {/* form error to be given more purpose with validation when project is hooked up to our api in stage-3*/}
           <p className='form__input-title form__error_save'>
             {
               props.didSucceed ?

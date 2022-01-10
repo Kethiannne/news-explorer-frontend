@@ -105,7 +105,6 @@ function App(props) {
             console.log((`jwt checker broken: ${ err }`))
           })
       } else {
-        console.log('no jwt found');
         setDoneChecking(true);
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,7 +155,6 @@ function App(props) {
         setLoggedIn(false);
         setJwt('');
         localStorage.removeItem('jwt');
-        console.log('logging out')
       }
 
     // Searching for News
@@ -225,10 +223,10 @@ function App(props) {
 
     function newsCardSave(article) {
       MainApi.createArticle(jwt, article)
-      .then((res)=>{
+      .then((res) => {
         return res
       })
-      .then(res=>{
+      .then(res => {
         // Adds new Article to savedArticles
         savedIndexing(res.article.url, res.article._id);
 
@@ -237,7 +235,7 @@ function App(props) {
         newUserArticles.push(res.article);
         setUserArticles(newUserArticles);
       })
-      .catch(err=>{
+      .catch(err => {
         console.log('Article Save Method Broken',err)
       })
     }
